@@ -1,133 +1,130 @@
-# Derkyu - Portfolio V2
+# Derkyu - Portfolio
 
-Modern portfolio website showcasing projects, skills, and experience built with Next.js 15 and advanced 3D animations.
+Mi portfolio personal: proyectos, stack y experiencia, hecho con Next.js 15 y animaciones 3D. En producción en [derkyu.com](https://derkyu.com).
 
-## 🚀 Tech Stack
+## Stack
 
-- **Framework**: Next.js 15.5.3 (App Router)
-- **React**: 19.1.0
+- **Framework**: Next.js 15.5 (App Router)
+- **React**: 19.1
 - **TypeScript**: v5
-- **Styling**: Tailwind CSS v4 + tw-animate-css
-- **Animations**: Framer Motion 12.23 + GSAP 3.13
-- **3D Graphics**: Three.js 0.180 + React Three Fiber + Drei
-- **UI Components**: Radix UI + shadcn/ui
-- **Icons**: Lucide React
+- **Estilos**: Tailwind CSS v4 + tw-animate-css
+- **Animaciones**: Framer Motion 12
+- **3D**: Three.js 0.180 + React Three Fiber + Drei
+- **Componentes UI**: Radix UI + shadcn/ui
+- **Iconos**: Lucide React
+- **Idiomas**: next-intl (español, inglés y francés)
 
-## ✨ Features
+## Funcionalidades
 
-- 🎨 **Modern UI/UX**: Clean, responsive design with smooth animations
-- 🎭 **3D Interactive Models**: Three.js integration with interactive 3D elements
-- ⚡ **Performance Optimized**: SSR/SSG with Next.js 15, optimized assets
-- 📱 **Fully Responsive**: Mobile-first design approach
-- 🎬 **Advanced Animations**: Framer Motion + GSAP for smooth transitions
-- 🌙 **Dark Theme**: Optimized color palette with OKLCH color space
-- ♿ **Accessible**: ARIA labels and semantic HTML
+- **Modelo 3D interactivo** con Three.js en la portada
+- **Diseño responsive** mobile-first
+- **Animaciones** con Framer Motion para las transiciones entre páginas
+- **Tema oscuro** con la paleta en espacio de color OKLCH
+- **Tres idiomas** con next-intl
+- **Widget de Spotify** con lo que estoy escuchando en ese momento
+- **Paleta de comandos** para navegar con el teclado
 
-## 📁 Project Structure
+## Estructura
 
 ```
-my-app/
-├── app/                    # Next.js App Router
-│   ├── about/             # About page
-│   ├── works/             # Portfolio/Works page
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Homepage
-│   └── globals.css        # Global styles
+portfolio/
+├── app/                    # App Router de Next.js
+│   ├── about/              # Página "Sobre mí"
+│   ├── works/              # Proyectos
+│   ├── api/spotify/        # Endpoint del widget de Spotify
+│   ├── layout.tsx          # Layout raíz
+│   ├── page.tsx            # Portada
+│   └── globals.css         # Estilos globales
 ├── components/
-│   ├── sections/          # Page sections (Header, Hero, Footer, etc.)
-│   ├── animations/        # Animation utilities
-│   ├── providers/         # React Context providers
-│   ├── layout/           # Layout components
-│   └── ui/               # UI components (shadcn/ui)
-├── hooks/                # Custom React hooks
-├── lib/                  # Utilities and helpers
-└── public/              # Static assets
-    ├── models/          # 3D models (GLB/GLTF)
-    └── logos/           # Project images and logos
+│   ├── sections/           # Secciones de página (header, hero, footer…)
+│   ├── animations/         # Utilidades de animación
+│   ├── providers/          # Providers de React Context
+│   ├── layout/             # Componentes de layout
+│   └── ui/                 # Componentes de shadcn/ui
+├── hooks/                  # Hooks propios
+├── i18n/ y messages/       # Configuración y textos de next-intl
+├── lib/                    # Utilidades
+└── public/
+    ├── models/             # Modelos 3D (GLB)
+    └── logos/              # Imágenes y logos de los proyectos
 ```
 
-## 🛠️ Getting Started
+## Puesta en marcha
 
-### Prerequisites
+### Requisitos
 
 - Node.js 20+
-- pnpm (recommended) / npm / yarn
+- pnpm
 
-### Installation
-
-```bash
-# Install dependencies
-pnpm install
-
-# Run development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Start production server
-pnpm start
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
-
-## 🎯 Pages
-
-- **Home** (`/`): Hero section with 3D model, about preview, and contact info
-- **About** (`/about`): Detailed bio, GitHub contributions, work experience timeline
-- **Works** (`/works`): Featured projects showcase with live demos and source code links
-
-## 🎨 Key Components
-
-### 3D Model Viewer
-Interactive 3D model viewer with support for GLB/GLTF/FBX formats:
-- Auto-centering and scaling
-- Orbit controls with zoom limits
-- Auto-rotation
-- Lazy loading with progress indicator
-
-### Animation System
-Global animation provider for synchronized page transitions and element animations:
-- Fade-in animations with configurable delays
-- Rotating text with stagger effects
-- Typewriter text effects
-- Custom animation hooks
-
-### Responsive Layout
-Mobile-first responsive design with adaptive SVG shapes and fluid typography using CSS clamp.
-
-## 📦 Key Dependencies
-
-| Package | Purpose |
-|---------|---------|
-| `next` | React framework with SSR/SSG |
-| `three` + `@react-three/fiber` | 3D rendering |
-| `framer-motion` | Declarative animations |
-| `gsap` | Timeline-based animations |
-| `tailwindcss` | Utility-first CSS |
-| `lucide-react` | Icon library |
-| `react-activity-calendar` | GitHub contributions |
-
-## 🚀 Deployment
-
-This project is optimized for deployment on [Vercel](https://vercel.com):
+### Desarrollo
 
 ```bash
-# Deploy to Vercel
-vercel
+pnpm install    # dependencias
+pnpm dev        # servidor de desarrollo
+pnpm build      # build de producción
+pnpm start      # arranca el build de producción
 ```
 
-## 📝 License
+Abre [http://localhost:3000](http://localhost:3000).
 
-This project is personal portfolio property of Derkyu.
+### Variables de entorno
 
-## 👤 Author
+Solo las necesita el widget de Spotify; sin ellas, `/api/spotify` responde que no suena nada. Copia `.env.example` a `.env.local` y rellena las credenciales de tu app de Spotify.
 
-**Derkyu**
-- Full-stack Developer
-- Barcelona, Spain
-- [Derkyu Hosting](https://hosting.derkyu.lol)
+### Docker
 
----
+```bash
+docker build -t portfolio .
+docker run --rm -p 3000:3000 --env-file .env.local portfolio
+```
 
-Built with ❤️ using Next.js 15
+Build multi-etapa con la salida standalone de Next.js: la imagen final corre con el usuario sin privilegios `node`, no lleva código fuente ni devDependencies, e incluye healthcheck.
+
+### CI
+
+Cada push y cada pull request pasa lint, comprobación de tipos y build de producción; después construye la imagen Docker y comprueba que el contenedor responde en el puerto 3000 (`.github/workflows/ci.yml`).
+
+## Páginas
+
+- **Inicio** (`/`): hero con el modelo 3D, resumen y contacto
+- **Sobre mí** (`/about`): bio, contribuciones de GitHub y experiencia
+- **Proyectos** (`/works`): proyectos destacados con demo y enlaces
+
+## Componentes clave
+
+### Visor de modelos 3D
+- Centrado y escalado automáticos
+- Controles orbitales con límites de zoom
+- Rotación automática
+- Carga diferida con indicador de progreso
+
+### Sistema de animaciones
+Provider global que sincroniza las transiciones de página y las animaciones de cada elemento:
+- Fade-in con retardos configurables
+- Texto rotatorio con efecto stagger
+- Efecto máquina de escribir
+- Hooks de animación propios
+
+## Dependencias principales
+
+| Paquete | Para qué |
+|---------|----------|
+| `next` | Framework de React con SSR/SSG |
+| `three` + `@react-three/fiber` | Render 3D |
+| `framer-motion` | Animaciones declarativas |
+| `next-intl` | Traducciones |
+| `tailwindcss` | CSS utility-first |
+| `lucide-react` | Iconos |
+| `react-activity-calendar` | Calendario de contribuciones de GitHub |
+
+## Deploy
+
+En producción va en [Vercel](https://vercel.com). La imagen Docker sirve para correrlo en cualquier otro sitio.
+
+## Licencia
+
+Portfolio personal; el código y los recursos son de Derkyu.
+
+## Autor
+
+**Derkyu** · Barcelona
