@@ -5,6 +5,8 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx'],
+  // Salida autocontenida solo para la imagen Docker; en Vercel no cambia nada
+  output: process.env.NEXT_STANDALONE === '1' ? 'standalone' : undefined,
   // Transpila los paquetes de Three.js para evitar problemas de SSR
   transpilePackages: ['@react-three/fiber', '@react-three/drei', 'three'],
   
