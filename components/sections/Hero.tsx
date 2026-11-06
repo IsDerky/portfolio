@@ -95,7 +95,7 @@ const Hero = () => {
 
           <div className="absolute bottom-[22%] md:bottom-[20%] left-[77%] md:left-auto md:right-[23%] transform -translate-x-1/2 md:translate-x-1/2 translate-y-1/2">
             <RotatingText
-              texts={['Developer', 'Gamer', 'Chatter']}
+              texts={['Developer', 'DevOps', 'Sysadmin']}
               mainClassName={`${permanentMarker.className} text-fg-secondary text-center`}
               staggerFrom="first"
               initial={{ y: "100%", opacity: 0 }}

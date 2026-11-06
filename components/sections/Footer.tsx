@@ -20,7 +20,7 @@ const Footer = () => {
         {/* Mobile */}
         <div className="block md:hidden space-y-6 text-center">
           <div>
-            <h4 className={`${poppins.className} text-xl font-medium text-fg-primary`}>Derkyu</h4>
+            <h4 className={`${poppins.className} text-xl font-medium text-fg-primary`}>Alex Miguel (Derkyu)</h4>
             <p className={`${poppins.className} text-sm text-fg-muted font-light mt-1`}>
               {t('role')}
             </p>
@@ -34,7 +34,7 @@ const Footer = () => {
         {/* Desktop */}
         <div className="hidden md:flex flex-row justify-between items-center">
           <div>
-            <h4 className={`${poppins.className} text-xl font-medium text-fg-primary`}>Derkyu</h4>
+            <h4 className={`${poppins.className} text-xl font-medium text-fg-primary`}>Alex Miguel (Derkyu)</h4>
             <p className={`${poppins.className} text-sm text-fg-muted font-light mt-1`}>
               {t('role')}
             </p>
@@ -49,7 +49,7 @@ const Footer = () => {
 
         <div className="text-center md:text-left">
           <p className={`${poppins.className} text-xs text-fg-subtle font-light`}>
-            © {currentYear} Derkyu. {t('rights')}
+            © {currentYear} Alex Miguel. {t('rights')}
           </p>
         </div>
       </FadeInElement>

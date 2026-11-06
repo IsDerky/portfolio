@@ -5,7 +5,7 @@
     "about": "Sobre mí"
   },
   "about": {
-    "bio": "Desarrollador y técnico de redes de Barcelona, España. Comencé mi camino en la programación en 2019 como autodidacta, y más tarde amplié mis conocimientos estudiando sistemas y redes informáticas."
+    "bio": "Ingeniero junior en NTT DATA (Barcelona), titulado en ASIR. Trabajo entre el desarrollo y la infraestructura, y hacia ahí quiero crecer: DevOps, SRE y seguridad. Fuera del trabajo mantengo un servidor propio con el mismo cuidado que uno de empresa: copias cifradas que se comprueban solas, vigilancia externa, despliegues automáticos con vuelta atrás y toda la configuración en código."
   },
   "moreInfo": {
     "bioTitle": "Bio",
@@ -14,21 +14,21 @@
     "mailMe": "Enviar correo",
     "timeline": [
       { "year": "2005", "event": "Nacido en Barcelona, España." },
-      { "year": "2019", "event": "Empecé en el mundo del desarrollo como autodidacta." },
-      { "year": "2021", "event": "Ingresé a un ciclo formativo de redes y sistemas para explorar otras áreas de la informática." },
-      { "year": "2025", "event": "Actualmente trabajando y enfocado en un proyecto activo llamado Derkyu Panel." }
+      { "year": "2019", "event": "Empecé a programar como autodidacta." },
+      { "year": "2021", "event": "Empecé el ciclo de Administración de Sistemas Informáticos en Red (ASIR)." },
+      { "year": "2025", "event": "Entré en NTT DATA como ingeniero junior y monté mi servidor propio." }
     ],
     "hobbies": ["Baloncesto", "Coches", "Cocina", "Código", "Streaming", "Juegos", "Series", "Música", "Motos"]
   },
   "worksIntro": {
     "title": "Mis Proyectos",
-    "description": "Una colección de proyectos en los que he trabajado. Cada proyecto representa un desafío único y una oportunidad de aprendizaje en mi camino como desarrollador."
+    "description": "Casi todo gira alrededor de mi servidor: cómo se configura, cómo se protege, cómo se vigila y cómo se despliega en él. El código y la documentación de cada proyecto están en GitHub."
   },
   "aboutMe": {
     "title": "Sobre Mí",
     "specialization": "Especialización",
-    "specializationValue": "Desarrollador web y Networker",
-    "totalExperience": "Experiencia Total",
+    "specializationValue": "Desarrollador, infraestructura y DevOps",
+    "totalExperience": "Experiencia en sistemas",
     "years": "Años",
     "coreTechnologies": "Tecnologías Principales",
     "devStats": "Estadísticas Dev",
@@ -36,9 +36,23 @@
     "coffeeCups": "Sorbos de Café",
     "featuredProject": "Proyecto Destacado"
   },
+  "workExperience": {
+    "title": "Experiencia",
+    "present": "Actualidad",
+    "nttdata": {
+      "position": "Ingeniero Junior · Digital Architecture",
+      "start": "Jul 2025",
+      "items": [
+        "Diseño de proxies y políticas en Apigee.",
+        "Migraciones de SOAP a REST y de plataformas legacy a versiones actuales, como de Apigee Edge a Apigee X.",
+        "Mantenimiento de pipelines de CI/CD en Jenkins y de repositorios en GitLab.",
+        "Soporte y resolución de incidencias a los equipos de desarrollo."
+      ]
+    }
+  },
   "footer": {
-    "role": "Desarrollador y Técnico de Redes",
-    "availability": "Disponible para trabajar",
+    "role": "Ingeniero Junior · DevOps",
+    "availability": "Abierto a nuevas oportunidades",
     "rights": "Todos los derechos reservados.",
     "location": "España, Barcelona"
   },
@@ -71,77 +85,119 @@
     "source": "Código"
   },
   "projects": {
-    "derkyu-hosting": {
-      "description": "Plataforma de hosting especializada para servidores de juegos, bots de Discord y software personalizado.",
-      "longDescription": "Una solución de hosting completa que ofrece rendimiento optimizado, herramientas de gestión intuitivas y soporte 24/7 con ubicaciones de servidor estratégicas en Europa y Sudamérica.",
+    "homelab": {
+      "description": "Mi servidor casero, tratado como producción y gestionado con Ansible.",
+      "longDescription": "Copias cifradas con simulacro de restauración mensual, vigilancia externa, hardening y CI/CD con runners propios y rollback, todo reproducible desde roles de Ansible.",
       "details": [
         {
-          "title": "Rendimiento y Flexibilidad",
-          "text": "Planes escalables con SLA del 99%, ubicaciones de servidor estratégicas en Europa y Sudamérica, y soporte técnico 24/7 para operaciones sin interrupciones."
+          "title": "Configuración como código",
+          "text": "SSH, cortafuegos, fail2ban, backups, avisos, nginx y Cloudflare Tunnel en roles de Ansible, con los secretos en Vault. Una segunda pasada termina con changed=0."
         },
         {
-          "title": "Funciones Avanzadas",
-          "text": "Editor de código integrado, gestor de archivos SFTP, actualizaciones automáticas, monitorización en tiempo real y protección DDoS incluidos en todos los planes."
+          "title": "Backups que se comprueban",
+          "text": "restic a Google Drive, cifrado antes de salir del servidor, y un simulacro mensual que restaura y comprueba los datos sin intervención."
         }
       ],
       "sections": [
         {
-          "heading": "Descripción General",
-          "body": "Una solución de hosting completa creada para la comunidad de gaming y desarrolladores — ofreciendo servidores de juegos, hosting de bots de Discord y despliegue de software personalizado. El objetivo era eliminar la complejidad del autohosting manteniendo el control total sobre la infraestructura."
+          "heading": "Qué es",
+          "body": "Un Dell OptiPlex con Ubuntu Server 24.04 que llevo desde 2025. Aloja una app web propia, un panel de Pterodactyl con servidores de juego para amigos y conocidos, AdGuard Home, un honeypot aislado y los runners de GitHub Actions de mis proyectos. Es una sola máquina, pero la trato como si fuera producción: si se cae, alguien se queda sin servicio."
         },
         {
-          "heading": "El Problema",
-          "body": "Antes pagaba por hosting para los servidores típicos de grupo de amigos, y con el tiempo decidí poner mis conocimientos en práctica y construir mi propia infraestructura en lugar de depender de terceros. A partir de ahí lo escalé y empecé a alquilarlo a otros."
-        },
-        {
-          "heading": "Características",
+          "heading": "Red y seguridad",
           "items": [
-            "Planes escalables con SLA del 99% y precios transparentes",
-            "Ubicaciones de servidor estratégicas en Europa y Sudamérica para baja latencia",
-            "Soporte técnico 24/7 con tiempos de respuesta rápidos",
-            "Editor de código integrado y gestor de archivos SFTP — sin necesidad de SSH para tareas básicas",
-            "Actualizaciones automáticas y paneles de monitorización en tiempo real",
-            "Protección DDoS incluida en todos los planes"
+            "SSH solo con clave y cerrado a internet; ufw con denegación por defecto y fail2ban con filtros propios para el SFTP de Wings",
+            "La app web no abre puertos: sale por Cloudflare Tunnel y solo escucha en loopback",
+            "Servicios internos limitados a la LAN, con certificados de Let's Encrypt emitidos por DNS-01",
+            "Aviso por Discord cada vez que alguien inicia sesión desde fuera de mi equipo"
           ]
         },
         {
-          "heading": "Stack Tecnológico",
-          "body": "Construido con Next.js, TypeScript y shadcn/ui para el frontend del panel de control, desplegado en una infraestructura personalizada optimizada para cargas de trabajo de servidores de juegos con baja latencia."
+          "heading": "Backups y vigilancia",
+          "items": [
+            "restic a Google Drive con timers de systemd: sistema cada 6 horas, servidores de juego a diario y mantenimiento semanal",
+            "Simulacro de restauración el primer domingo de cada mes, que comprueba que lo restaurado sirve",
+            "Vigilante externo en Cloudflare Workers: si falta un latido del servidor o de los backups, avisa"
+          ]
         },
         {
-          "heading": "Qué Aprendí",
-          "body": "Gestionar infraestructura a escala sacó a la luz desafíos en torno al aislamiento de recursos, la lógica de facturación y la monitorización en tiempo real que me llevaron a construir herramientas que no había planeado originalmente. El proyecto está en curso y es utilizado activamente por clientes."
+          "heading": "Ansible",
+          "body": "Toda la configuración está en roles de Ansible (base, ssh, ufw, fail2ban, backup, avisos, nginx y cloudflared) que se aplican con un solo playbook. Los roles son públicos; el inventario y los secretos, cifrados con Ansible Vault, van en un repo privado aparte. Cada cambio se prueba antes con --check --diff, y los roles que pueden dejar el servidor sin acceso validan primero (sshd -t, nginx -t, fail2ban-client --test). El CI pasa ansible-lint con el perfil production."
+        },
+        {
+          "heading": "Despliegues",
+          "body": "Cada push a main pasa el CI en GitHub y un runner autoalojado despliega por versiones: copia de la base de datos, migraciones, comprobación de salud y vuelta automática a la versión anterior si algo falla."
         }
       ]
     },
-    "ronin-fc": {
-      "description": "Sitio web creado por la comunidad para el Ronin FC, el club de fútbol fundado por Ibai Llanos.",
-      "longDescription": "Sitio web creado por la comunidad para el club de fútbol Ronin FC. Este es un proyecto de fans y no está oficialmente afiliado ni respaldado por Ibai Llanos ni por la organización del Ronin FC.",
+    "cowrie-honeypot": {
+      "description": "Honeypot SSH y Telnet en Docker, aislado de la red de casa.",
+      "longDescription": "Aislamiento por capas (sin root, sistema de ficheros de solo lectura, iptables en DOCKER-USER y systemd) y una prueba de aislamiento que para el servicio si falla.",
       "sections": [
         {
-          "heading": "Descripción General",
-          "body": "Un sitio web creado por la comunidad para el Ronin FC, el club de fútbol fundado por Ibai Llanos. Este es un proyecto de fans — no está oficialmente afiliado ni respaldado por Ibai Llanos ni por la organización del Ronin FC."
+          "heading": "Qué es",
+          "body": "Cowrie en Docker, expuesto en los puertos 22 y 23 de mi router. Acepta casi cualquier contraseña, graba las sesiones y guarda lo que suben, pero no ejecuta nada. Lo monté para ver qué pasa de verdad cuando expones un SSH a internet."
         },
         {
-          "heading": "Por Qué Lo Construí",
-          "body": "El Ronin FC creció muy rápido y la comunidad no tenía un hub central para noticias, plantillas o resultados. Lo construí para llenar ese vacío: un sitio web limpio y rápido que obtiene datos en vivo para que los fans siempre tengan información actualizada sin que nadie tenga que actualizarla manualmente."
-        },
-        {
-          "heading": "Características",
+          "heading": "Aislamiento",
           "items": [
-            "Noticias y actualizaciones del club agregadas de fuentes oficiales",
-            "Plantilla de jugadores con estadísticas y posiciones",
-            "Resultados y calendario con integración de marcadores en vivo",
-            "Datos impulsados por API — el contenido se actualiza automáticamente, sin ediciones manuales de CMS"
+            "Contenedor con usuario sin privilegios, rootfs de solo lectura, cap_drop: ALL y límites de memoria, CPU y procesos",
+            "Reglas en la cadena DOCKER-USER que cortan el tráfico hacia la LAN y otras redes privadas (los puertos publicados por Docker no pasan por ufw)",
+            "systemd aplica el cortafuegos antes de levantar el contenedor: si las reglas fallan, el honeypot no arranca",
+            "Logs, sesiones y descargas de más de 30 días se borran solos"
           ]
         },
         {
-          "heading": "Stack Tecnológico",
-          "body": "Construido con Next.js y TypeScript, consumiendo APIs deportivas externas para mantener los datos del club actualizados. El enfoque fue el rendimiento: las páginas se generan estáticamente donde es posible y se revalidan en intervalos cortos."
+          "heading": "Probar en vez de suponer",
+          "body": "La instalación lanza un contenedor en la misma red e intenta llegar al router, al servidor y a mi PC. Si alcanza cualquiera de ellos, para el honeypot y falla. El mismo rol está en Ansible y el CI lo aplica sobre el runner de GitHub Actions con señuelos reales, comprobando primero que sin cortafuegos sí se llega a ellos."
         },
         {
-          "heading": "Desafíos",
-          "body": "El principal desafío fue trabajar con respuestas inconsistentes de APIs de terceros — algunos endpoints devolvían datos parciales o tenían límites de velocidad que requerían estrategias de caché cuidadosas. Terminé construyendo una capa de API ligera para normalizar y almacenar en caché las respuestas antes de que llegaran al frontend."
+          "heading": "Qué he visto",
+          "body": "Miles de intentos al día desde cientos de IPs, casi siempre con root y las contraseñas de siempre. Los ataques que más me han hecho trabajar no iban al honeypot, sino al SFTP de Pterodactyl, y me llevaron a escribir filtros propios de fail2ban."
+        }
+      ]
+    },
+    "asistente-ops": {
+      "description": "Bot de Discord para operar mi servidor desde el móvil.",
+      "longDescription": "Un recolector con root, un bot sin privilegios con herramientas de solo lectura para un LLM, acciones que piden confirmación y un vigilante externo en Cloudflare Workers definido con Terraform.",
+      "sections": [
+        {
+          "heading": "Qué es",
+          "body": "Un asistente al que pregunto por DM cómo va el servidor sin abrir SSH: estado de los backups, quién está atacando, cuánto falta para que caduque un certificado o qué servidor de juego usa más RAM."
+        },
+        {
+          "heading": "Separación de privilegios",
+          "body": "Un recolector corre como root cada 5 minutos y deja el estado en un JSON (SMART, servicios, backups, certificados, fail2ban, Docker y el journal). El bot, que es lo que habla con internet y con el LLM, corre con un usuario sin privilegios y solo lee ese JSON. Lo que más permisos necesita es lo que menos se expone."
+        },
+        {
+          "heading": "Acciones con confirmación",
+          "body": "El modelo solo puede proponer acciones, como reiniciar la app o lanzar un backup. Se ejecutan cuando pulso un botón de un solo uso que caduca a los 10 minutos, y polkit limita lo que el bot puede tocar a dos unidades de systemd."
+        },
+        {
+          "heading": "Vigilante externo",
+          "body": "Un Worker de Cloudflare con cron y KV recibe latidos del servidor y de los backups. Si alguno no llega a tiempo, avisa por Discord. Está fuera a propósito, porque un servidor apagado no puede avisar de que se ha apagado. Su infraestructura está definida con Terraform."
+        },
+        {
+          "heading": "Solo lo importante",
+          "body": "Al principio avisaba de todo y era ruido. Ahora solo avisa de lo grave; las anomalías de los logs las agrupa por huella y me las cuenta si le pregunto."
+        }
+      ]
+    },
+    "oficina-pixel": {
+      "description": "Panel de estado de mi servidor en forma de edificio pixel-art.",
+      "longDescription": "Cada animación es un evento real que llega por SSE: despliegues, backups, baneos o ataques al honeypot. Solo en la LAN y de solo lectura.",
+      "sections": [
+        {
+          "heading": "Qué es",
+          "body": "Un edificio de cinco plantas en el que cada planta es una parte del servidor: servidores de juego, backups, fail2ban, el honeypot o el bot de operaciones. Corre en la LAN y es de solo lectura."
+        },
+        {
+          "heading": "Nada de relleno",
+          "body": "Si un personaje se mueve es porque ha llegado un evento real: la furgoneta aparece con un despliegue (roja si falla), el camión de la nube con un backup y los atacantes del honeypot entran con lo que han escrito de verdad."
+        },
+        {
+          "heading": "Cómo funciona",
+          "body": "Canvas propio, sin frameworks en el navegador. Los datos vienen de la API local del bot de operaciones; nginx la publica solo para la LAN y solo acepta GET. Como parte de lo que se pinta lo escriben atacantes, todo se inserta como texto y una CSP impide cargar scripts de fuera."
         }
       ]
     },
@@ -179,7 +235,7 @@
         },
         {
           "heading": "Stack Tecnológico",
-          "body": "Construido con Next.js y React, funcionando completamente del lado del cliente. Optimizado para resoluciones de stream de 1080p y 1440p."
+          "body": "Next.js 16 y React 19 con Prisma y PostgreSQL, login con Discord (NextAuth) y logos en Cloudinary. Optimizado para streams a 1080p y 1440p."
         }
       ]
     }

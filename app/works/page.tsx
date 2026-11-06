@@ -5,19 +5,19 @@ import AllProjects from "@/components/sections/works/AllProjects";
 import Footer from "@/components/sections/Footer";
 
 export const metadata: Metadata = {
-  title: "Works - Derkyu",
-  description: "Projects built by Derkyu — web apps, hosting platforms, developer tools, and more.",
+  title: "Works - Alex Miguel (Derkyu)",
+  description: "Infrastructure, automation and security projects by Derkyu: homelab, Ansible, CI/CD and more.",
   openGraph: {
-    title: "Works - Derkyu",
-    description: "Projects built by Derkyu — web apps, hosting platforms, developer tools, and more.",
-    url: "https://derkyu.lol/works",
-    siteName: "Derkyu",
+    title: "Works - Alex Miguel (Derkyu)",
+    description: "Infrastructure, automation and security projects by Derkyu: homelab, Ansible, CI/CD and more.",
+    url: "https://derkyu.com/works",
+    siteName: "Alex Miguel (Derkyu)",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Works - Derkyu",
-    description: "Projects built by Derkyu — web apps, hosting platforms, developer tools, and more.",
+    title: "Works - Alex Miguel (Derkyu)",
+    description: "Infrastructure, automation and security projects by Derkyu: homelab, Ansible, CI/CD and more.",
   },
 };
 

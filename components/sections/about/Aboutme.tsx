@@ -15,7 +15,7 @@ import { FadeInElement } from "@/components/animations/ContentAnimation";
 import SpotifyWidget from "@/components/SpotifyWidget";
 import { useTranslations } from 'next-intl';
 
-const featuredProjectBase = getProjectById('derkyu-hosting')!;
+const featuredProjectBase = getProjectById('homelab')!;
 
 type ProjectTranslation = {
   description?: string;
@@ -29,20 +29,20 @@ const Aboutme = () => {
   const t = useTranslations('aboutMe');
   const tProjects = useTranslations('projects');
 
-  const projectTp = tProjects.raw('derkyu-hosting') as ProjectTranslation;
+  const projectTp = tProjects.raw('homelab') as ProjectTranslation;
   const featuredProject = { ...featuredProjectBase, ...projectTp };
+  const featuredUrl = featuredProject.liveUrl ?? featuredProject.githubUrl;
 
   const masterTechnologies = [
-    { name: "TypeScript", level: 95, color: "bg-fg-secondary" },
-    { name: "Node.js", level: 90, color: "bg-fg-secondary" },
-    { name: "MongoDB", level: 75, color: "bg-fg-secondary" },
-    { name: "PHP", level: 50, color: "bg-fg-secondary" }
+    "Linux", "Docker", "Ansible", "Terraform", "Apigee", "Jenkins",
+    "GitLab", "GitHub Actions", "nginx", "Cloudflare", "Bash", "Python",
+    "TypeScript", "PostgreSQL", "MariaDB", "SQLite", "Git"
   ];
 
   const smallProjects = [
     {
       stats: [
-        { label: t('linesOfCode'), value: "60K+", icon: "code" },
+        { label: t('linesOfCode'), value: "100K+", icon: "code" },
         { label: t('coffeeCups'), value: "∞", icon: "coffee" }
       ],
       type: "dual-stat"
@@ -82,7 +82,7 @@ const Aboutme = () => {
             className="bg-surface-2 rounded-xl p-4 border border-fg-primary/10 transition-all duration-300"
           >
             <div className={`${poppins.className} text-xs text-fg-muted mb-2`}>{t('totalExperience')}</div>
-            <div className={`${poppins.className} text-3xl font-bold text-fg-primary`}>4+</div>
+            <div className={`${poppins.className} text-3xl font-bold text-fg-primary`}>3+</div>
             <div className={`${poppins.className} text-sm text-fg-secondary`}>{t("years")}</div>
           </motion.div>
         </FadeInElement>
@@ -94,22 +94,14 @@ const Aboutme = () => {
             className="bg-surface-2 rounded-xl p-4 border border-fg-primary/10 transition-all duration-300"
           >
             <div className={`${poppins.className} text-xs text-fg-muted mb-3`}>{t("coreTechnologies")}</div>
-            <div className="space-y-3">
-              {masterTechnologies.map((tech, index) => (
-                <div key={tech.name} className="space-y-1.5">
-                  <div className="flex justify-between items-center">
-                    <span className={`${poppins.className} text-xs font-medium text-fg-primary`}>{tech.name}</span>
-                    <span className={`${poppins.className} text-xs text-fg-muted`}>{tech.level}%</span>
-                  </div>
-                  <div className="w-full bg-fg-primary/10 rounded-full h-1.5">
-                    <motion.div
-                      className={`${tech.color} h-1.5 rounded-full`}
-                      initial={{ width: 0 }}
-                      animate={{ width: `${tech.level}%` }}
-                      transition={{ delay: 0.5 + (index * 0.15), duration: 1 }}
-                    />
-                  </div>
-                </div>
+            <div className="flex flex-wrap gap-1.5">
+              {masterTechnologies.map((tech) => (
+                <span
+                  key={tech}
+                  className={`${poppins.className} text-xs px-2.5 py-1 rounded-full bg-fg-primary/5 border border-fg-primary/10 text-fg-secondary`}
+                >
+                  {tech}
+                </span>
               ))}
             </div>
           </motion.div>
@@ -160,7 +152,7 @@ const Aboutme = () => {
           <motion.div
             whileHover={{ scale: 1.01 }}
             className="bg-surface-2 rounded-xl border border-fg-primary/10 transition-all duration-300 cursor-pointer group"
-            onClick={() => window.open(featuredProject.liveUrl, '_blank')}
+            onClick={() => window.open(featuredUrl, '_blank')}
           >
             <div className="p-4">
               <div className="flex justify-between items-start mb-2">
@@ -217,7 +209,7 @@ const Aboutme = () => {
               className="bg-surface-2 rounded-xl p-5 h-full border border-fg-primary/10 transition-all duration-300 flex flex-col justify-start items-start text-left"
             >
               <div className={`${poppins.className} text-xs text-fg-muted mb-2`}>{t('totalExperience')}</div>
-              <div className={`${poppins.className} text-2xl font-bold text-fg-primary mb-1`}>4+</div>
+              <div className={`${poppins.className} text-2xl font-bold text-fg-primary mb-1`}>3+</div>
               <div className={`${poppins.className} text-xs text-fg-secondary`}>{t("years")}</div>
             </motion.div>
           </FadeInElement>
@@ -233,22 +225,14 @@ const Aboutme = () => {
             >
               <div className={`${poppins.className} text-xs text-fg-muted mb-3`}>{t("coreTechnologies")}</div>
 
-              <div className="space-y-3.5 flex-1 flex flex-col justify-center">
-                {masterTechnologies.map((tech, index) => (
-                  <div key={tech.name} className="space-y-1.5">
-                    <div className="flex justify-between items-center">
-                      <span className={`${poppins.className} text-xs font-medium text-fg-primary`}>{tech.name}</span>
-                      <span className={`${poppins.className} text-xs text-fg-muted`}>{tech.level}%</span>
-                    </div>
-                    <div className="w-full bg-fg-primary/10 rounded-full h-1.5">
-                      <motion.div
-                        className={`${tech.color} h-1.5 rounded-full`}
-                        initial={{ width: 0 }}
-                        animate={{ width: `${tech.level}%` }}
-                        transition={{ delay: 1 + (index * 0.15), duration: 1 }}
-                      />
-                    </div>
-                  </div>
+              <div className="flex-1 flex flex-wrap content-center gap-1.5">
+                {masterTechnologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className={`${poppins.className} text-xs px-2.5 py-1 rounded-full bg-fg-primary/5 border border-fg-primary/10 text-fg-secondary`}
+                  >
+                    {tech}
+                  </span>
                 ))}
               </div>
             </motion.div>
@@ -332,7 +316,7 @@ const Aboutme = () => {
                         rotate: expandedSection === 'featured' ? -15 : 0
                       }}
                       transition={{ duration: 0.5, ease: "easeOut" }}
-                      href={featuredProject.liveUrl}
+                      href={featuredUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2"

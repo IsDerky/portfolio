@@ -2,6 +2,7 @@ import Image from "next/image";
 import { poppins } from "@/lib/fonts";
 import Section from "@/components/layout/Section";
 import { FadeInElement } from "@/components/animations/ContentAnimation";
+import { useTranslations } from "next-intl";
 
 interface Experience {
   id: string;
@@ -10,18 +11,32 @@ interface Experience {
   startDate: string;
   endDate: string;
   current: boolean;
-  description: string;
+  items: string[];
   logo: string;
+  logoDark?: string;
 }
 
 const WorkExperience = () => {
-  const experiences: Experience[] = [];
+  const t = useTranslations("workExperience");
+  const experiences: Experience[] = [
+    {
+      id: "nttdata",
+      company: "NTT DATA",
+      position: t("nttdata.position"),
+      startDate: t("nttdata.start"),
+      endDate: t("present"),
+      current: true,
+      items: t.raw("nttdata.items") as string[],
+      logo: "/logos/NTT.svg",
+      logoDark: "/logos/NTT-dark.svg",
+    },
+  ];
 
   return (
     <Section className="py-6 md:py-8">
       <FadeInElement delay={0.1} className="mb-8">
         <h3 className={`${poppins.className} text-xl md:text-2xl font-semibold text-fg-primary mb-2`}>
-          Work Experience
+          {t("title")}
         </h3>
       </FadeInElement>
 
@@ -35,9 +50,19 @@ const WorkExperience = () => {
                   <Image
                     src={exp.logo}
                     alt={`${exp.company} logo`}
-                    fill
-                    className="object-contain"
+                    width={48}
+                    height={48}
+                    className={`object-contain w-full h-full ${exp.logoDark ? "dark:hidden" : ""}`}
                   />
+                  {exp.logoDark && (
+                    <Image
+                      src={exp.logoDark}
+                      alt={`${exp.company} logo`}
+                      width={48}
+                      height={48}
+                      className="object-contain w-full h-full hidden dark:block"
+                    />
+                  )}
                 </div>
                 {index < experiences.length - 1 && (
                   <div className="w-0.5 bg-fg-primary/10 flex-1 mt-2"></div>
@@ -55,9 +80,11 @@ const WorkExperience = () => {
                 <p className={`${poppins.className} text-xs md:text-sm text-fg-subtle mb-3 md:mb-4 uppercase tracking-wide`}>
                   {exp.startDate} - <span className={exp.current ? 'text-green-500' : ''}>{exp.endDate}</span>
                 </p>
-                <p className={`${poppins.className} text-xs md:text-sm text-fg-muted leading-relaxed`}>
-                  {exp.description}
-                </p>
+                <ul className={`${poppins.className} text-xs md:text-sm text-fg-muted leading-relaxed list-disc pl-4 space-y-1`}>
+                  {exp.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           </FadeInElement>

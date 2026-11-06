@@ -11,12 +11,11 @@ import SimpleDock from "@/components/SimpleDock";
 import { useTranslations, useLocale } from 'next-intl';
 import { setLocale } from '@/app/actions/locale';
 
-type Locale = 'en' | 'es' | 'fr';
+type Locale = 'en' | 'es';
 
 const languages: { code: Locale; label: string; flagCode: string }[] = [
   { code: 'en', label: 'English', flagCode: 'gb' },
   { code: 'es', label: 'Español', flagCode: 'es' },
-  { code: 'fr', label: 'Français', flagCode: 'fr' },
 ];
 
 function LanguageSwitcher() {

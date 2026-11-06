@@ -4,8 +4,8 @@ import Footer from "@/components/sections/Footer";
 import MoreInfo from "@/components/sections/MoreInfo";
 
 export const metadata: Metadata = {
-  title: "Derkyu - Portfolio",
-  description: "Portfolio of Derkyu, a full-stack developer and network technician from Barcelona. Building web apps, hosting platforms, and tools.",
+  title: "Alex Miguel (Derkyu) - Portfolio",
+  description: "Junior engineer at NTT DATA in Barcelona, working across development, infrastructure and DevOps. Homelab, Ansible, CI/CD and security projects.",
 };
 
 export default function Home() {

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Derkyu - Works",
-  description: "Explore my portfolio of web development projects, including Derkyu Hosting, Discord bots, and custom web applications built with modern technologies.",
+  title: "Works - Alex Miguel (Derkyu)",
+  description: "Infrastructure, automation and security projects by Derkyu: homelab, Ansible, CI/CD and more.",
 };
 
 export default function WorksLayout({

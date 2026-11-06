@@ -3,15 +3,15 @@
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectImage from '@/components/ProjectImage';
-import { X, Maximize2, ExternalLink, Github, Code2, Server, Network, Wrench, type LucideIcon } from 'lucide-react';
+import { X, Maximize2, ExternalLink, Github, Code2, Server, ShieldCheck, Wrench, type LucideIcon } from 'lucide-react';
 import { poppins } from '@/lib/fonts';
 import type { Project } from '@/lib/projects';
 import { useTranslations } from 'next-intl';
 
 const categoryIcons: Record<string, LucideIcon> = {
+  infra: Server,
+  security: ShieldCheck,
   web: Code2,
-  service: Server,
-  network: Network,
   tools: Wrench,
 };
 

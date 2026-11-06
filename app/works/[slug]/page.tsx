@@ -5,14 +5,14 @@ import Footer from '@/components/sections/Footer';
 import Section from '@/components/layout/Section';
 import { poppins } from '@/lib/fonts';
 import ProjectImage from '@/components/ProjectImage';
-import { Code2, Server, Network, Wrench, type LucideIcon } from 'lucide-react';
+import { Code2, Server, ShieldCheck, Wrench, type LucideIcon } from 'lucide-react';
 import ProjectContent from '@/components/sections/works/LocalizedMDX';
 import WorksNav from '@/components/sections/works/WorksNav';
 
 const categoryIcons: Record<string, LucideIcon> = {
+  infra: Server,
+  security: ShieldCheck,
   web: Code2,
-  service: Server,
-  network: Network,
   tools: Wrench,
 };
 
@@ -29,7 +29,7 @@ export async function generateMetadata({
   const project = getProjectById(slug);
   if (!project) return {};
   return {
-    title: `${project.title} - Derkyu`,
+    title: `${project.title} - Alex Miguel (Derkyu)`,
     description: project.description,
   };
 }
