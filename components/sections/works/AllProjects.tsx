@@ -3,7 +3,7 @@
 import React, { memo, useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { ExternalLink, Code2, Network, Wrench, Server, LayoutGrid, type LucideIcon } from 'lucide-react';
+import { ExternalLink, Code2, ShieldCheck, Wrench, Server, LayoutGrid, type LucideIcon } from 'lucide-react';
 import { poppins } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import { projects } from '@/lib/projects';
@@ -13,9 +13,9 @@ import { FadeInElement } from "@/components/animations/ContentAnimation";
 
 const categoryIcons: Record<string, LucideIcon> = {
   all: LayoutGrid,
+  infra: Server,
+  security: ShieldCheck,
   web: Code2,
-  service: Server,
-  network: Network,
   tools: Wrench,
 };
 
@@ -140,7 +140,7 @@ const AllProjects = () => {
   const t = useTranslations('works');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  const categories = ['all', 'web', 'service', 'network', 'tools'];
+  const categories = ['all', 'infra', 'security', 'web', 'tools'];
 
   const filteredProjects = useMemo(
     () => selectedCategory === 'all'

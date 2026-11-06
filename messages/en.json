@@ -5,7 +5,7 @@
     "about": "About"
   },
   "about": {
-    "bio": "Developer and network technician from Barcelona, Spain. I started my programming journey in 2019 as a self-taught developer, and later expanded my knowledge by studying network systems and infrastructure."
+    "bio": "Cloud engineer at NTT DATA (Barcelona) with a degree in Network and Systems Administration. I'm into infrastructure: DevOps, SRE and defensive security. Since 2025 I've been running my own server like production, with encrypted backups that restore themselves every month, external monitoring, deploys with rollback and the whole configuration in Ansible."
   },
   "moreInfo": {
     "bioTitle": "Bio",
@@ -14,31 +14,41 @@
     "mailMe": "Mail me",
     "timeline": [
       { "year": "2005", "event": "Born in Barcelona, Spain." },
-      { "year": "2019", "event": "Started in the development world as a self-taught learner." },
-      { "year": "2021", "event": "Entered a networking and systems vocational program to explore other areas of computer science." },
-      { "year": "2025", "event": "Currently working and focused on an active project called Derkyu Panel." }
+      { "year": "2019", "event": "Started programming on my own." },
+      { "year": "2021", "event": "Started a vocational degree in Network and Systems Administration (ASIR)." },
+      { "year": "2025", "event": "Joined NTT DATA as a cloud engineer and set up my home server." },
+      { "year": "2026", "event": "Moving my server's configuration to Ansible and my infrastructure to code." }
     ],
     "hobbies": ["Basketball", "Cars", "Cooking", "Coding", "Streaming", "Games", "Series", "Music", "Bikes"]
   },
   "worksIntro": {
     "title": "My Works",
-    "description": "A collection of projects I've worked on. Each project represents a unique challenge and learning opportunity in my development journey."
+    "description": "Most of it revolves around my server: how it's configured, secured, monitored and deployed to. The code and documentation of each project are on GitHub."
   },
   "aboutMe": {
     "title": "About Me",
     "specialization": "Specialization",
-    "specializationValue": "Web developer & Networker",
-    "totalExperience": "Total Experience",
-    "years": "Years",
+    "specializationValue": "Cloud & DevOps",
+    "totalExperience": "Professional Experience",
+    "years": "Year",
     "coreTechnologies": "Core Technologies",
     "devStats": "Developer Stats",
     "linesOfCode": "Lines of Code",
     "coffeeCups": "Coffee Sips",
     "featuredProject": "Featured Project"
   },
+  "workExperience": {
+    "title": "Experience",
+    "present": "Present",
+    "nttdata": {
+      "position": "Cloud Engineer · Digital Architecture",
+      "start": "Jul 2025",
+      "description": "Design of Apigee proxies and policies, migration of SOAP services to REST and from Apigee Edge to Apigee X. Maintenance of Jenkins and GitLab pipelines, incident resolution for development teams and on-call shifts."
+    }
+  },
   "footer": {
-    "role": "Developer & Network Technician",
-    "availability": "Available for work",
+    "role": "Cloud Engineer · DevOps",
+    "availability": "Open to new opportunities",
     "rights": "All Rights Reserved.",
     "location": "Spain, Barcelona"
   },
@@ -71,77 +81,155 @@
     "source": "Source"
   },
   "projects": {
-    "derkyu-hosting": {
-      "description": "Specialized hosting platform for game servers, Discord bots, and custom software.",
-      "longDescription": "A comprehensive hosting solution offering optimized performance, intuitive management tools, and 24/7 support with strategic server locations across Europe and South America.",
+    "homelab": {
+      "description": "My home server, run like production and managed with Ansible.",
+      "longDescription": "Encrypted backups with monthly restore drills, external monitoring, hardening and self-hosted CI/CD with rollback, all reproducible from Ansible roles.",
       "details": [
         {
-          "title": "Performance & Flexibility",
-          "text": "Scalable plans with 99% SLA, strategic server locations across Europe and South America, and 24/7 technical support for seamless operations."
+          "title": "Configuration as code",
+          "text": "SSH, firewall, fail2ban, backups, alerts, nginx and Cloudflare Tunnel as Ansible roles with secrets in Vault. A second run ends with changed=0."
         },
         {
-          "title": "Advanced Features",
-          "text": "Integrated code editor, SFTP file manager, automatic updates, real-time monitoring, and DDoS protection included in all plans."
+          "title": "Backups that are tested",
+          "text": "restic to Google Drive, encrypted before leaving the server, and a monthly drill that restores and checks the data on its own."
         }
       ],
       "sections": [
         {
-          "heading": "Overview",
-          "body": "A comprehensive hosting solution built for the gaming and developer community — offering game servers, Discord bot hosting, and custom software deployment. The goal was to eliminate the complexity of self-hosting while keeping full control over infrastructure."
+          "heading": "What it is",
+          "body": "A Dell OptiPlex running Ubuntu Server 24.04 that I've had since 2025. It hosts my own web app, a Pterodactyl panel with game servers for friends, AdGuard Home, an isolated honeypot and the GitHub Actions runners for my projects. It's a single machine, but I treat it like production: if it goes down, people lose service."
         },
         {
-          "heading": "The Problem",
-          "body": "I used to pay for hosting to run the typical friend group servers, and over time I decided to put my own knowledge to use and build my own infrastructure instead of relying on third parties. From there, I scaled it up and started renting it out to others."
-        },
-        {
-          "heading": "Features",
+          "heading": "Network and security",
           "items": [
-            "Scalable plans with 99% SLA and transparent pricing",
-            "Strategic server locations across Europe and South America for low latency",
-            "24/7 technical support with fast response times",
-            "Integrated code editor and SFTP file manager — no SSH required for basic tasks",
-            "Automatic updates and real-time monitoring dashboards",
-            "DDoS protection included on all plans"
+            "SSH with keys only and closed to the internet; ufw denying by default and fail2ban with custom filters for the Wings SFTP",
+            "The web app opens no ports: it goes out through Cloudflare Tunnel and only listens on loopback",
+            "Internal services limited to the LAN, with Let's Encrypt certificates issued via DNS-01",
+            "A Discord alert every time someone logs in from anywhere other than my machine"
           ]
         },
         {
-          "heading": "Tech Stack",
-          "body": "Built with Next.js, TypeScript, and shadcn/ui for the control panel frontend, deployed on a custom infrastructure stack optimized for low-latency game server workloads."
+          "heading": "Backups and monitoring",
+          "items": [
+            "restic to Google Drive with systemd timers: system every 6 hours, game servers daily and weekly maintenance",
+            "A restore drill on the first Sunday of every month that checks the restored data is usable",
+            "External watchdog on Cloudflare Workers: if the server or the backups miss a heartbeat, it alerts me"
+          ]
         },
         {
-          "heading": "What I Learned",
-          "body": "Managing infrastructure at scale surfaced challenges around resource isolation, billing logic, and real-time monitoring that pushed me to build tooling I hadn't originally planned. The project is ongoing and actively used by clients."
+          "heading": "Ansible",
+          "body": "The whole configuration lives in Ansible roles (base, ssh, ufw, fail2ban, backup, alerts, nginx and cloudflared) applied with a single playbook. The roles are public; the inventory and the secrets, encrypted with Ansible Vault, live in a separate private repo. Every change is tried first with --check --diff, and roles that could lock me out validate before applying (sshd -t, nginx -t, fail2ban-client --test). CI runs ansible-lint with the production profile."
+        },
+        {
+          "heading": "Deploys",
+          "body": "Every push to main goes through CI on GitHub and a self-hosted runner deploys versioned releases: database backup, migrations, health check and automatic rollback to the previous version if anything fails."
         }
       ]
     },
-    "ronin-fc": {
-      "description": "Community-built website for Ronin FC, the football club founded by Ibai Llanos.",
-      "longDescription": "Community-built website for Ronin FC football club. This is a fan-made project and is not officially affiliated with or endorsed by Ibai Llanos or Ronin FC organization.",
+    "cowrie-honeypot": {
+      "description": "SSH and Telnet honeypot in Docker, isolated from my home network.",
+      "longDescription": "Layered isolation (non-root, read-only filesystem, iptables in DOCKER-USER and systemd) and an isolation test that stops the service if it fails.",
       "sections": [
         {
-          "heading": "Overview",
-          "body": "A community-built website for Ronin FC, the football club founded by Ibai Llanos. This is a fan-made project — not officially affiliated with or endorsed by Ibai Llanos or the Ronin FC organization."
+          "heading": "What it is",
+          "body": "Cowrie in Docker, exposed on ports 22 and 23 of my router. It accepts almost any password, records sessions and keeps whatever gets uploaded, but runs nothing. I set it up to see what really happens when you expose SSH to the internet."
         },
         {
-          "heading": "Why I Built It",
-          "body": "Ronin FC blew up fast and the community had no central hub for news, rosters, or match results. I built this to fill that gap: a clean, fast website that pulls live data so fans always have up-to-date information without anyone manually updating it."
-        },
-        {
-          "heading": "Features",
+          "heading": "Isolation",
           "items": [
-            "Club news and updates aggregated from official sources",
-            "Player roster with stats and positions",
-            "Match results and schedule with live score integration",
-            "API-driven data — content updates automatically, no manual CMS edits needed"
+            "Unprivileged container user, read-only rootfs, cap_drop: ALL and memory, CPU and process limits",
+            "Rules in the DOCKER-USER chain that drop traffic to the LAN and other private networks (ports published by Docker bypass ufw)",
+            "systemd applies the firewall before starting the container: if the rules fail, the honeypot doesn't start",
+            "Logs, sessions and downloads older than 30 days are deleted automatically"
           ]
         },
         {
-          "heading": "Tech Stack",
-          "body": "Built with Next.js and TypeScript, consuming external sports APIs to keep club data fresh. The focus was on performance: pages are statically generated where possible and revalidated on a short interval to stay current."
+          "heading": "Test, don't assume",
+          "body": "The install launches a container on the same network and tries to reach the router, the server and my PC. If it reaches any of them, it stops the honeypot and fails. The same role exists in Ansible, and CI applies it on the GitHub Actions runner against real decoys, first checking that without the firewall they are reachable."
         },
         {
-          "heading": "Challenges",
-          "body": "The main challenge was working around inconsistent third-party API responses — some endpoints returned partial data or had rate limits that required careful caching strategies. I ended up building a thin API layer to normalize and cache responses before they hit the frontend."
+          "heading": "What I've seen",
+          "body": "Thousands of attempts a day from hundreds of IPs, almost always as root with the usual passwords. The attacks that kept me busiest didn't target the honeypot but the Pterodactyl SFTP, and led me to write custom fail2ban filters."
+        }
+      ]
+    },
+    "asistente-ops": {
+      "description": "Discord bot to operate my server from my phone.",
+      "longDescription": "A root collector, an unprivileged bot with read-only tools for an LLM, actions that need confirmation and an external watchdog on Cloudflare Workers defined in Terraform.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "An assistant I can DM to check on the server without opening SSH: backup status, who is attacking, how long until a certificate expires or which game server uses the most RAM."
+        },
+        {
+          "heading": "Privilege separation",
+          "body": "A collector runs as root every 5 minutes and writes the state to a JSON file (SMART, services, backups, certificates, fail2ban, Docker and the journal). The bot, which is what talks to the internet and to the LLM, runs as an unprivileged user and only reads that file. What needs the most permissions is what's least exposed."
+        },
+        {
+          "heading": "Actions with confirmation",
+          "body": "The model can only propose actions, like restarting the app or starting a backup. They run when I press a single-use button that expires after 10 minutes, and polkit limits the bot to two systemd units."
+        },
+        {
+          "heading": "External watchdog",
+          "body": "A Cloudflare Worker with cron and KV receives heartbeats from the server and the backups. If one is late, it alerts me on Discord. It lives outside on purpose, because a server that's down can't report that it's down. Its infrastructure is defined in Terraform."
+        },
+        {
+          "heading": "Only what matters",
+          "body": "At first it alerted on everything and it was noise. Now it only alerts on serious issues; log anomalies are grouped by fingerprint and reported when I ask."
+        }
+      ]
+    },
+    "bentonime": {
+      "description": "Self-hosted web app with versioned deploys and automatic rollback.",
+      "longDescription": "Next.js and SQLite behind Cloudflare Tunnel. Each push runs CI and a self-hosted runner deploys: database backup, migrations, health check and rollback if anything fails.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A web app I host on my server for myself and a group of friends, with Discord login and an allowlist. The code is private; the public repo explains the architecture, security and deployment."
+        },
+        {
+          "heading": "Deployment",
+          "items": [
+            "CI on GitHub Actions: lint, types, migrations against an empty database, tests and build",
+            "A self-hosted runner prepares each release in its own folder with git worktree",
+            "The database is backed up before migrating, then a health check runs",
+            "If the health check fails, it rolls back to the previous release on its own"
+          ]
+        },
+        {
+          "heading": "Security",
+          "items": [
+            "Fail-closed allowlist: if it's empty, nobody gets in",
+            "Custom sessions: only a hash of the token is stored in the database",
+            "Signed, expiring URLs with HMAC and a rate limit that survives restarts",
+            "Listens only on loopback and reaches the internet through Cloudflare Tunnel"
+          ]
+        },
+        {
+          "heading": "Operations",
+          "body": "Every scheduled job stores its runs in the database (start, end, status, error and duration), so the admin panel shows them without relying on process memory, and they can be triggered by hand without overlapping."
+        },
+        {
+          "heading": "Stack",
+          "body": "Next.js 16, React 19 and TypeScript on Bun, SQLite with Drizzle and hand-written migrations."
+        }
+      ]
+    },
+    "oficina-pixel": {
+      "description": "Status dashboard for my server as a pixel-art building.",
+      "longDescription": "Every animation is a real event received over SSE: deploys, backups, bans or attacks on the honeypot. LAN only and read-only.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A five-floor building where each floor is a part of the server: game servers, backups, fail2ban, the honeypot or the ops bot. It runs on the LAN and is read-only."
+        },
+        {
+          "heading": "No filler",
+          "body": "If a character moves, it's because a real event arrived: the van shows up with a deploy (red if it fails), the cloud truck with a backup, and honeypot attackers walk in with what they actually typed."
+        },
+        {
+          "heading": "How it works",
+          "body": "Custom canvas, no frameworks in the browser. The data comes from the ops bot's local API; nginx exposes it to the LAN only and only allows GET. Since part of what's drawn is written by attackers, everything is inserted as text and a CSP blocks external scripts."
         }
       ]
     },
@@ -179,7 +267,7 @@
         },
         {
           "heading": "Tech Stack",
-          "body": "Built with Next.js and React, running entirely client-side. Optimized for 1080p and 1440p stream resolutions."
+          "body": "Next.js 16 and React 19 with Prisma and PostgreSQL, Discord login (NextAuth) and logos on Cloudinary. Optimized for 1080p and 1440p streams."
         }
       ]
     }
