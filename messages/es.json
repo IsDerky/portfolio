@@ -5,7 +5,7 @@
     "about": "Sobre mí"
   },
   "about": {
-    "bio": "Ingeniero cloud en NTT DATA (Barcelona) y técnico superior en ASIR. Me interesa la infraestructura: DevOps, SRE y seguridad defensiva. Desde 2025 administro un servidor propio como si fuera producción, con copias cifradas que se restauran solas cada mes, vigilancia externa, despliegues con rollback y la configuración pasada a Ansible."
+    "bio": "Ingeniero junior en NTT DATA (Barcelona), titulado en ASIR. Trabajo entre el desarrollo y la infraestructura, y hacia ahí quiero crecer: DevOps, SRE y seguridad. Fuera del trabajo mantengo un servidor propio con el mismo cuidado que uno de empresa: copias cifradas que se comprueban solas, vigilancia externa, despliegues automáticos con vuelta atrás y toda la configuración en código."
   },
   "moreInfo": {
     "bioTitle": "Bio",
@@ -16,8 +16,7 @@
       { "year": "2005", "event": "Nacido en Barcelona, España." },
       { "year": "2019", "event": "Empecé a programar como autodidacta." },
       { "year": "2021", "event": "Empecé el ciclo de Administración de Sistemas Informáticos en Red (ASIR)." },
-      { "year": "2025", "event": "Entré en NTT DATA como ingeniero cloud y monté mi servidor en casa." },
-      { "year": "2026", "event": "Paso la configuración del servidor a Ansible y la infraestructura a código." }
+      { "year": "2025", "event": "Entré en NTT DATA como ingeniero junior y monté mi servidor propio." }
     ],
     "hobbies": ["Baloncesto", "Coches", "Cocina", "Código", "Streaming", "Juegos", "Series", "Música", "Motos"]
   },
@@ -28,9 +27,9 @@
   "aboutMe": {
     "title": "Sobre Mí",
     "specialization": "Especialización",
-    "specializationValue": "Cloud y DevOps",
-    "totalExperience": "Experiencia profesional",
-    "years": "Año",
+    "specializationValue": "Desarrollador, infraestructura y DevOps",
+    "totalExperience": "Experiencia en sistemas",
+    "years": "Años",
     "coreTechnologies": "Tecnologías Principales",
     "devStats": "Estadísticas Dev",
     "linesOfCode": "Líneas de Código",
@@ -41,13 +40,18 @@
     "title": "Experiencia",
     "present": "Actualidad",
     "nttdata": {
-      "position": "Ingeniero Cloud · Digital Architecture",
+      "position": "Ingeniero Junior · Digital Architecture",
       "start": "Jul 2025",
-      "description": "Diseño de proxies y políticas en Apigee, migración de servicios SOAP a REST y de Apigee Edge a Apigee X. Mantenimiento de pipelines en Jenkins y GitLab, resolución de incidencias de los equipos y guardias."
+      "items": [
+        "Diseño de proxies y políticas en Apigee.",
+        "Migraciones de SOAP a REST y de plataformas legacy a versiones actuales, como de Apigee Edge a Apigee X.",
+        "Mantenimiento de pipelines de CI/CD en Jenkins y de repositorios en GitLab.",
+        "Soporte y resolución de incidencias a los equipos de desarrollo."
+      ]
     }
   },
   "footer": {
-    "role": "Ingeniero Cloud · DevOps",
+    "role": "Ingeniero Junior · DevOps",
     "availability": "Abierto a nuevas oportunidades",
     "rights": "Todos los derechos reservados.",
     "location": "España, Barcelona"
@@ -176,42 +180,6 @@
         {
           "heading": "Solo lo importante",
           "body": "Al principio avisaba de todo y era ruido. Ahora solo avisa de lo grave; las anomalías de los logs las agrupa por huella y me las cuenta si le pregunto."
-        }
-      ]
-    },
-    "bentonime": {
-      "description": "App web autoalojada con despliegue por versiones y rollback automático.",
-      "longDescription": "Next.js y SQLite detrás de Cloudflare Tunnel. Cada push pasa el CI y un runner propio despliega: copia de la base de datos, migraciones, comprobación de salud y rollback si algo falla.",
-      "sections": [
-        {
-          "heading": "Qué es",
-          "body": "Una app web que alojo en mi servidor para mí y un grupo de amigos, con login por Discord y lista blanca. El código es privado; el repo público explica la arquitectura, la seguridad y el despliegue."
-        },
-        {
-          "heading": "Despliegue",
-          "items": [
-            "CI en GitHub Actions: lint, tipos, migraciones contra una base de datos vacía, tests y build",
-            "Un runner autoalojado prepara cada versión en su propia carpeta con git worktree",
-            "Antes de migrar se copia la base de datos; después, comprobación de salud",
-            "Si la comprobación falla, vuelve sola a la versión anterior"
-          ]
-        },
-        {
-          "heading": "Seguridad",
-          "items": [
-            "Lista blanca que falla en cerrado: si está vacía, no entra nadie",
-            "Sesiones propias: en la base de datos solo se guarda el hash del token",
-            "URLs firmadas con HMAC y caducidad, y rate limit que sobrevive a reinicios",
-            "Solo escucha en loopback y sale a internet por Cloudflare Tunnel"
-          ]
-        },
-        {
-          "heading": "Operación",
-          "body": "Cada tarea programada guarda sus ejecuciones en la base de datos (inicio, fin, estado, error y duración), así que el panel de administración las muestra sin depender de la memoria del proceso y se pueden lanzar a mano sin que se solapen."
-        },
-        {
-          "heading": "Stack",
-          "body": "Next.js 16, React 19 y TypeScript con Bun como runtime, SQLite con Drizzle y migraciones escritas a mano."
         }
       ]
     },

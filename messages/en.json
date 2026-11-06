@@ -5,7 +5,7 @@
     "about": "About"
   },
   "about": {
-    "bio": "Cloud engineer at NTT DATA (Barcelona) with a degree in Network and Systems Administration. I'm into infrastructure: DevOps, SRE and defensive security. Since 2025 I've been running my own server like production, with encrypted backups that restore themselves every month, external monitoring, deploys with rollback and the whole configuration in Ansible."
+    "bio": "Junior engineer at NTT DATA (Barcelona) with a degree in Network and Systems Administration. I work between development and infrastructure, and that's where I want to grow: DevOps, SRE and security. Outside work I run my own server with the same care as a company one: encrypted backups that check themselves, external monitoring, automated deploys with rollback and the whole configuration as code."
   },
   "moreInfo": {
     "bioTitle": "Bio",
@@ -16,8 +16,7 @@
       { "year": "2005", "event": "Born in Barcelona, Spain." },
       { "year": "2019", "event": "Started programming on my own." },
       { "year": "2021", "event": "Started a vocational degree in Network and Systems Administration (ASIR)." },
-      { "year": "2025", "event": "Joined NTT DATA as a cloud engineer and set up my home server." },
-      { "year": "2026", "event": "Moving my server's configuration to Ansible and my infrastructure to code." }
+      { "year": "2025", "event": "Joined NTT DATA as a junior engineer and set up my own server." }
     ],
     "hobbies": ["Basketball", "Cars", "Cooking", "Coding", "Streaming", "Games", "Series", "Music", "Bikes"]
   },
@@ -28,9 +27,9 @@
   "aboutMe": {
     "title": "About Me",
     "specialization": "Specialization",
-    "specializationValue": "Cloud & DevOps",
-    "totalExperience": "Professional Experience",
-    "years": "Year",
+    "specializationValue": "Developer, infrastructure & DevOps",
+    "totalExperience": "Systems Experience",
+    "years": "Years",
     "coreTechnologies": "Core Technologies",
     "devStats": "Developer Stats",
     "linesOfCode": "Lines of Code",
@@ -41,13 +40,18 @@
     "title": "Experience",
     "present": "Present",
     "nttdata": {
-      "position": "Cloud Engineer · Digital Architecture",
+      "position": "Junior Engineer · Digital Architecture",
       "start": "Jul 2025",
-      "description": "Design of Apigee proxies and policies, migration of SOAP services to REST and from Apigee Edge to Apigee X. Maintenance of Jenkins and GitLab pipelines, incident resolution for development teams and on-call shifts."
+      "items": [
+        "Design of Apigee proxies and policies.",
+        "Migrations from SOAP to REST and from legacy platforms to current versions, such as Apigee Edge to Apigee X.",
+        "Maintenance of CI/CD pipelines in Jenkins and repositories in GitLab.",
+        "Support and incident resolution for development teams."
+      ]
     }
   },
   "footer": {
-    "role": "Cloud Engineer · DevOps",
+    "role": "Junior Engineer · DevOps",
     "availability": "Open to new opportunities",
     "rights": "All Rights Reserved.",
     "location": "Spain, Barcelona"
@@ -176,42 +180,6 @@
         {
           "heading": "Only what matters",
           "body": "At first it alerted on everything and it was noise. Now it only alerts on serious issues; log anomalies are grouped by fingerprint and reported when I ask."
-        }
-      ]
-    },
-    "bentonime": {
-      "description": "Self-hosted web app with versioned deploys and automatic rollback.",
-      "longDescription": "Next.js and SQLite behind Cloudflare Tunnel. Each push runs CI and a self-hosted runner deploys: database backup, migrations, health check and rollback if anything fails.",
-      "sections": [
-        {
-          "heading": "What it is",
-          "body": "A web app I host on my server for myself and a group of friends, with Discord login and an allowlist. The code is private; the public repo explains the architecture, security and deployment."
-        },
-        {
-          "heading": "Deployment",
-          "items": [
-            "CI on GitHub Actions: lint, types, migrations against an empty database, tests and build",
-            "A self-hosted runner prepares each release in its own folder with git worktree",
-            "The database is backed up before migrating, then a health check runs",
-            "If the health check fails, it rolls back to the previous release on its own"
-          ]
-        },
-        {
-          "heading": "Security",
-          "items": [
-            "Fail-closed allowlist: if it's empty, nobody gets in",
-            "Custom sessions: only a hash of the token is stored in the database",
-            "Signed, expiring URLs with HMAC and a rate limit that survives restarts",
-            "Listens only on loopback and reaches the internet through Cloudflare Tunnel"
-          ]
-        },
-        {
-          "heading": "Operations",
-          "body": "Every scheduled job stores its runs in the database (start, end, status, error and duration), so the admin panel shows them without relying on process memory, and they can be triggered by hand without overlapping."
-        },
-        {
-          "heading": "Stack",
-          "body": "Next.js 16, React 19 and TypeScript on Bun, SQLite with Drizzle and hand-written migrations."
         }
       ]
     },
