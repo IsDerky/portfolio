@@ -4,21 +4,21 @@ import WorkExperience from "@/components/sections/about/WorkExperience";
 import GitContributions from "@/components/sections/about/GitContributions";
 import Footer from "@/components/sections/Footer";
 
-const description = "Cloud engineer at NTT DATA in Barcelona, focused on DevOps, SRE and defensive security. I run my own home server like production.";
+const description = "Junior engineer at NTT DATA in Barcelona, working across development, infrastructure and DevOps. I run my own home server like production.";
 
 export const metadata: Metadata = {
-  title: "About - Derkyu",
+  title: "About - Alex Miguel (Derkyu)",
   description,
   openGraph: {
-    title: "About - Derkyu",
+    title: "About - Alex Miguel (Derkyu)",
     description,
     url: "https://derkyu.com/about",
-    siteName: "Derkyu",
+    siteName: "Alex Miguel (Derkyu)",
     type: "profile",
   },
   twitter: {
     card: "summary_large_image",
-    title: "About - Derkyu",
+    title: "About - Alex Miguel (Derkyu)",
     description,
   },
 };

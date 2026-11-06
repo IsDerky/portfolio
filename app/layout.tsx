@@ -11,8 +11,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: "Derkyu - Portfolio",
-  description: "Cloud engineer at NTT DATA in Barcelona, focused on DevOps, SRE and defensive security. Homelab, Ansible, CI/CD and security projects.",
+  title: "Alex Miguel (Derkyu) - Portfolio",
+  description: "Junior engineer at NTT DATA in Barcelona, working across development, infrastructure and DevOps. Homelab, Ansible, CI/CD and security projects.",
 };
 
 export default async function RootLayout({

@@ -11,8 +11,9 @@ interface Experience {
   startDate: string;
   endDate: string;
   current: boolean;
-  description: string;
+  items: string[];
   logo: string;
+  logoDark?: string;
 }
 
 const WorkExperience = () => {
@@ -25,8 +26,9 @@ const WorkExperience = () => {
       startDate: t("nttdata.start"),
       endDate: t("present"),
       current: true,
-      description: t("nttdata.description"),
+      items: t.raw("nttdata.items") as string[],
       logo: "/logos/NTT.svg",
+      logoDark: "/logos/NTT-dark.svg",
     },
   ];
 
@@ -50,8 +52,17 @@ const WorkExperience = () => {
                     alt={`${exp.company} logo`}
                     width={48}
                     height={48}
-                    className="object-contain w-full h-full"
+                    className={`object-contain w-full h-full ${exp.logoDark ? "dark:hidden" : ""}`}
                   />
+                  {exp.logoDark && (
+                    <Image
+                      src={exp.logoDark}
+                      alt={`${exp.company} logo`}
+                      width={48}
+                      height={48}
+                      className="object-contain w-full h-full hidden dark:block"
+                    />
+                  )}
                 </div>
                 {index < experiences.length - 1 && (
                   <div className="w-0.5 bg-fg-primary/10 flex-1 mt-2"></div>
@@ -69,9 +80,11 @@ const WorkExperience = () => {
                 <p className={`${poppins.className} text-xs md:text-sm text-fg-subtle mb-3 md:mb-4 uppercase tracking-wide`}>
                   {exp.startDate} - <span className={exp.current ? 'text-green-500' : ''}>{exp.endDate}</span>
                 </p>
-                <p className={`${poppins.className} text-xs md:text-sm text-fg-muted leading-relaxed`}>
-                  {exp.description}
-                </p>
+                <ul className={`${poppins.className} text-xs md:text-sm text-fg-muted leading-relaxed list-disc pl-4 space-y-1`}>
+                  {exp.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           </FadeInElement>

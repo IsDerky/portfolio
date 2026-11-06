@@ -35,13 +35,14 @@ const Aboutme = () => {
 
   const masterTechnologies = [
     "Linux", "Docker", "Ansible", "Terraform", "Apigee", "Jenkins",
-    "GitLab", "GitHub Actions", "nginx", "Bash", "Python", "TypeScript"
+    "GitLab", "GitHub Actions", "nginx", "Cloudflare", "Bash", "Python",
+    "TypeScript", "PostgreSQL", "MariaDB", "SQLite", "Git"
   ];
 
   const smallProjects = [
     {
       stats: [
-        { label: t('linesOfCode'), value: "60K+", icon: "code" },
+        { label: t('linesOfCode'), value: "100K+", icon: "code" },
         { label: t('coffeeCups'), value: "∞", icon: "coffee" }
       ],
       type: "dual-stat"
@@ -81,7 +82,7 @@ const Aboutme = () => {
             className="bg-surface-2 rounded-xl p-4 border border-fg-primary/10 transition-all duration-300"
           >
             <div className={`${poppins.className} text-xs text-fg-muted mb-2`}>{t('totalExperience')}</div>
-            <div className={`${poppins.className} text-3xl font-bold text-fg-primary`}>1+</div>
+            <div className={`${poppins.className} text-3xl font-bold text-fg-primary`}>3+</div>
             <div className={`${poppins.className} text-sm text-fg-secondary`}>{t("years")}</div>
           </motion.div>
         </FadeInElement>
@@ -208,7 +209,7 @@ const Aboutme = () => {
               className="bg-surface-2 rounded-xl p-5 h-full border border-fg-primary/10 transition-all duration-300 flex flex-col justify-start items-start text-left"
             >
               <div className={`${poppins.className} text-xs text-fg-muted mb-2`}>{t('totalExperience')}</div>
-              <div className={`${poppins.className} text-2xl font-bold text-fg-primary mb-1`}>1+</div>
+              <div className={`${poppins.className} text-2xl font-bold text-fg-primary mb-1`}>3+</div>
               <div className={`${poppins.className} text-xs text-fg-secondary`}>{t("years")}</div>
             </motion.div>
           </FadeInElement>

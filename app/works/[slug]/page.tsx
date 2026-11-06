@@ -29,7 +29,7 @@ export async function generateMetadata({
   const project = getProjectById(slug);
   if (!project) return {};
   return {
-    title: `${project.title} - Derkyu`,
+    title: `${project.title} - Alex Miguel (Derkyu)`,
     description: project.description,
   };
 }
