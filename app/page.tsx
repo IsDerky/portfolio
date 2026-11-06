@@ -5,7 +5,7 @@ import MoreInfo from "@/components/sections/MoreInfo";
 
 export const metadata: Metadata = {
   title: "Derkyu - Portfolio",
-  description: "Portfolio of Derkyu, a full-stack developer and network technician from Barcelona. Building web apps, hosting platforms, and tools.",
+  description: "Cloud engineer at NTT DATA in Barcelona, focused on DevOps, SRE and defensive security. Homelab, Ansible, CI/CD and security projects.",
 };
 
 export default function Home() {

@@ -12,7 +12,7 @@ import { getLocale, getMessages } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: "Derkyu - Portfolio",
-  description: "Full-stack developer specializing in web applications, network solutions, and developer tools.",
+  description: "Cloud engineer at NTT DATA in Barcelona, focused on DevOps, SRE and defensive security. Homelab, Ansible, CI/CD and security projects.",
 };
 
 export default async function RootLayout({
