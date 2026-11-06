@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers';
 
-const locales = ['en', 'es', 'fr'];
+const locales = ['en', 'es'];
 
 export async function setLocale(locale: string) {
   if (!locales.includes(locale)) return;
