@@ -2,6 +2,7 @@ import Image from "next/image";
 import { poppins } from "@/lib/fonts";
 import Section from "@/components/layout/Section";
 import { FadeInElement } from "@/components/animations/ContentAnimation";
+import { useTranslations } from "next-intl";
 
 interface Experience {
   id: string;
@@ -15,13 +16,25 @@ interface Experience {
 }
 
 const WorkExperience = () => {
-  const experiences: Experience[] = [];
+  const t = useTranslations("workExperience");
+  const experiences: Experience[] = [
+    {
+      id: "nttdata",
+      company: "NTT DATA",
+      position: t("nttdata.position"),
+      startDate: t("nttdata.start"),
+      endDate: t("present"),
+      current: true,
+      description: t("nttdata.description"),
+      logo: "/logos/NTT.svg",
+    },
+  ];
 
   return (
     <Section className="py-6 md:py-8">
       <FadeInElement delay={0.1} className="mb-8">
         <h3 className={`${poppins.className} text-xl md:text-2xl font-semibold text-fg-primary mb-2`}>
-          Work Experience
+          {t("title")}
         </h3>
       </FadeInElement>
 
@@ -35,8 +48,9 @@ const WorkExperience = () => {
                   <Image
                     src={exp.logo}
                     alt={`${exp.company} logo`}
-                    fill
-                    className="object-contain"
+                    width={48}
+                    height={48}
+                    className="object-contain w-full h-full"
                   />
                 </div>
                 {index < experiences.length - 1 && (
