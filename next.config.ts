@@ -57,6 +57,18 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  // www.derkyu.com sirve la misma web: mejor una sola URL (308, conserva ruta y query)
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.derkyu.com' }],
+        destination: 'https://derkyu.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);
