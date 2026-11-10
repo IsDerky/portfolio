@@ -8,6 +8,7 @@ import { Home, User, Briefcase, Sun, Moon } from 'lucide-react';
 import { CircleFlag } from 'react-circle-flags';
 import { poppins } from "@/lib/fonts";
 import SimpleDock from "@/components/SimpleDock";
+import LogoD from "@/components/LogoD";
 import { useTranslations, useLocale } from 'next-intl';
 import { setLocale } from '@/app/actions/locale';
 
@@ -103,6 +104,12 @@ export function DesktopNav() {
       aria-label="Main navigation"
     >
       <ul className="flex items-center space-x-8">
+        <li className="flex items-center gap-8">
+          <Link href="/" aria-label="Derkyu" className="text-fg-primary hover:opacity-80 transition-opacity duration-300">
+            <LogoD className="h-5 w-auto" />
+          </Link>
+          <span className="w-px h-4 bg-fg-primary/20" />
+        </li>
         {menuItems.map((item, index) => {
           const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
           return (
@@ -159,6 +166,10 @@ export function MobileDock() {
         className="flex items-center space-x-2 bg-fg-primary/10 backdrop-blur-xl border border-fg-primary/20 rounded-full px-4 py-2 shadow-2xl"
         style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
       >
+        <Link href="/" aria-label="Derkyu" className="text-fg-primary px-1">
+          <LogoD className="h-4 w-auto" />
+        </Link>
+        <span className="w-px h-4 bg-fg-primary/20 mx-1" />
         <SimpleDock items={dockItems} unstyled />
         <span className="w-px h-4 bg-fg-primary/20 mx-1" />
         <LanguageSwitcher />
