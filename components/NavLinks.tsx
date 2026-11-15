@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useTransition } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { Home, User, Briefcase, Sun, Moon } from 'lucide-react';
+import { Home, User, Briefcase, BookOpen, Sun, Moon } from 'lucide-react';
 import { CircleFlag } from 'react-circle-flags';
 import { poppins } from "@/lib/fonts";
 import SimpleDock from "@/components/SimpleDock";
@@ -93,6 +93,7 @@ export function DesktopNav() {
   const menuItems = [
     { name: t('home'), href: '/', icon: Home },
     { name: t('works'), href: '/works', icon: Briefcase },
+    { name: t('blog'), href: '/blog', icon: BookOpen },
     { name: t('about'), href: '/about', icon: User },
   ];
 
@@ -148,6 +149,7 @@ export function MobileDock() {
   const menuItems = [
     { name: t('home'), href: '/', icon: Home },
     { name: t('works'), href: '/works', icon: Briefcase },
+    { name: t('blog'), href: '/blog', icon: BookOpen },
     { name: t('about'), href: '/about', icon: User },
   ];
 

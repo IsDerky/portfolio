@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { Search, Home, Briefcase, User, ExternalLink, Mail, X } from 'lucide-react';
+import { Search, Home, Briefcase, BookOpen, User, ExternalLink, Mail, X } from 'lucide-react';
 import { poppins } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 import { projects } from '@/lib/projects';
@@ -53,6 +53,14 @@ export function CommandPalette() {
       sublabel: 'View all projects',
       icon: <Briefcase size={15} />,
       action: () => navigate('/works'),
+      group: 'Navigation',
+    },
+    {
+      id: 'blog',
+      label: 'Blog',
+      sublabel: 'Notes from my home server',
+      icon: <BookOpen size={15} />,
+      action: () => navigate('/blog'),
       group: 'Navigation',
     },
     {
