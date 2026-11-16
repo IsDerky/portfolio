@@ -2,7 +2,7 @@
 
 import { FC, Suspense, useLayoutEffect, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, useGLTF, useProgress, Html } from '@react-three/drei';
+import { OrbitControls, useGLTF, useProgress } from '@react-three/drei';
 import * as THREE from 'three';
 
 export interface ViewerProps {
@@ -17,10 +17,20 @@ export interface ViewerProps {
   onModelLoaded?: () => void;
 }
 
+// Fuera del Canvas a propósito: <Html> de drei como fallback de Suspense monta su propia
+// raíz de React y con React 19 acababa en «removeChild ... not a child of this node».
 const Loader: FC = () => {
-  const { progress } = useProgress();
+  const { active, progress } = useProgress();
+  if (!active) return null;
   return (
-    <Html center>
+    <div style={{
+      position: 'absolute',
+      inset: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      pointerEvents: 'none',
+    }}>
       <div style={{
         color: 'white',
         fontFamily: 'system-ui',
@@ -31,7 +41,7 @@ const Loader: FC = () => {
       }}>
         {Math.round(progress)}%
       </div>
-    </Html>
+    </div>
   );
 };
 
@@ -149,7 +159,7 @@ const ModelViewer: FC<ViewerProps> = ({
           autoRotateSpeed={autoRotateSpeed}
         />
 
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={null}>
           <Model
             url={url}
             autoRotate={autoRotate}
@@ -158,6 +168,7 @@ const ModelViewer: FC<ViewerProps> = ({
           />
         </Suspense>
       </Canvas>
+      <Loader />
     </div>
   );
 };
