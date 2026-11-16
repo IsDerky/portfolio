@@ -115,14 +115,15 @@ export default function SpotifyWidget() {
     }
   }, []);
 
-  // Fetch inicial y cada 5s — pausar cuando la tab está en segundo plano
+  // Fetch inicial y luego cada 5 s si suena algo o cada 30 s si no (el cupo de Spotify es por app,
+  // compartido entre todos los visitantes). Pausado con la pestaña en segundo plano.
   useEffect(() => {
     fetchData();
     const fetchInterval = setInterval(() => {
       if (document.visibilityState === 'visible') fetchData();
-    }, 5000);
+    }, data?.isPlaying ? 5000 : 30_000);
     return () => clearInterval(fetchInterval);
-  }, [fetchData]);
+  }, [fetchData, data?.isPlaying]);
 
   // Ticker: recalcula desde fetchedAt cada segundo + re-fetch si la canción terminó
   useEffect(() => {

@@ -54,22 +54,39 @@ async function getRecentlyPlayed(accessToken: string) {
   });
 }
 
-// Última canción vista sonando en esta instancia: respaldo si recently-played no responde
-// (p. ej. un refresh token sin el scope user-read-recently-played).
-let ultima: Record<string, unknown> | null = null;
+type Cancion = Record<string, unknown>;
 
-const CACHE = { 'Cache-Control': 'public, max-age=10, stale-while-revalidate=30' };
+// Estado de esta instancia (se pierde al arrancar otra, por eso hay varios respaldos):
+//  - ultima: la última canción vista, sonando o de recently-played
+//  - reciente: recently-played se pide como mucho cada RECIENTE_MS (su cupo es el que se agota)
+//  - pausaHasta: tras un 429 no se llama a Spotify hasta que pase el Retry-After
+let ultima: Cancion | null = null;
+let recienteHasta = 0;
+let pausaHasta = 0;
+const RECIENTE_MS = 5 * 60_000;
+
+// El CDN de Vercel comparte la respuesta entre visitantes unos segundos: una llamada a Spotify para todos
+const CACHE = { 'Cache-Control': 'public, s-maxage=5, stale-while-revalidate=30' };
+
+function pausar(res: Response, donde: string) {
+  const segundos = Number(res.headers.get('retry-after')) || 60;
+  if (Date.now() >= pausaHasta) console.error(`Spotify ${donde}: 429, pausa de ${segundos} s`);
+  pausaHasta = Date.now() + segundos * 1000;
+}
+
+const sinSonar = () =>
+  NextResponse.json(ultima ? { ...ultima, isPlaying: false, progress: 0, fetchedAt: Date.now() } : { isPlaying: false }, { headers: CACHE });
 
 export async function GET() {
   if (!refreshToken) {
     return NextResponse.json({ isPlaying: false, error: 'No refresh token configured' });
   }
+  if (Date.now() < pausaHasta) return sinSonar();
 
   try {
     const accessToken = await getAccessToken();
     const nowPlayingRes = await getNowPlaying(accessToken);
 
-    // Currently playing
     if (nowPlayingRes.status === 200) {
       const data = await nowPlayingRes.json();
 
@@ -99,39 +116,40 @@ export async function GET() {
           fetchedAt: Date.now(),
         }, { headers: CACHE });
       }
+    } else if (nowPlayingRes.status === 429) {
+      pausar(nowPlayingRes, 'currently-playing');
+      return sinSonar();
     } else if (nowPlayingRes.status !== 204) {
       console.error('Spotify currently-playing:', nowPlayingRes.status, await nowPlayingRes.text().catch(() => ''));
     }
 
-    // Not playing — get recently played
+    // No suena nada: la última escuchada, sin pedirla más de una vez cada RECIENTE_MS
+    if (ultima && Date.now() < recienteHasta) return sinSonar();
+
     const recentRes = await getRecentlyPlayed(accessToken);
     if (recentRes.status === 200) {
       const recentData = await recentRes.json();
       const item = recentData.items?.[0]?.track;
+      recienteHasta = Date.now() + RECIENTE_MS;
 
       if (item) {
-        return NextResponse.json({
-          isPlaying: false,
+        ultima = {
           type: 'track',
           title: item.name,
           artist: item.artists.map((a: { name: string }) => a.name).join(', '),
           album: item.album?.name,
           albumArt: item.album?.images?.[1]?.url ?? item.album?.images?.[0]?.url,
           songUrl: item.external_urls?.spotify,
-          progress: 0,
           duration: item.duration_ms,
-          fetchedAt: Date.now(),
-        }, { headers: CACHE });
+        };
       }
+    } else if (recentRes.status === 429) {
+      pausar(recentRes, 'recently-played');
     } else {
-      // 401/403 aquí suele ser el scope user-read-recently-played que falta en el refresh token
       console.error('Spotify recently-played:', recentRes.status, await recentRes.text().catch(() => ''));
     }
 
-    if (ultima) {
-      return NextResponse.json({ ...ultima, isPlaying: false, progress: 0, fetchedAt: Date.now() }, { headers: CACHE });
-    }
-    return NextResponse.json({ isPlaying: false });
+    return sinSonar();
   } catch (error) {
     console.error('Spotify API error:', error);
     return NextResponse.json({ isPlaying: false, error: 'Failed to fetch' });
