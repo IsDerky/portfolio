@@ -54,6 +54,12 @@ async function getRecentlyPlayed(accessToken: string) {
   });
 }
 
+// Última canción vista sonando en esta instancia: respaldo si recently-played no responde
+// (p. ej. un refresh token sin el scope user-read-recently-played).
+let ultima: Record<string, unknown> | null = null;
+
+const CACHE = { 'Cache-Control': 'public, max-age=10, stale-while-revalidate=30' };
+
 export async function GET() {
   if (!refreshToken) {
     return NextResponse.json({ isPlaying: false, error: 'No refresh token configured' });
@@ -71,8 +77,7 @@ export async function GET() {
         const isTrack = data.currently_playing_type === 'track';
         const item = data.item;
 
-        return NextResponse.json({
-          isPlaying: data.is_playing === true,
+        const cancion = {
           type: data.currently_playing_type,
           title: item.name,
           artist: isTrack
@@ -83,13 +88,19 @@ export async function GET() {
             ? item.album?.images?.[1]?.url ?? item.album?.images?.[0]?.url
             : item.images?.[1]?.url ?? item.images?.[0]?.url,
           songUrl: item.external_urls?.spotify,
-          progress: data.progress_ms,
           duration: item.duration_ms,
+        };
+        ultima = cancion;
+
+        return NextResponse.json({
+          ...cancion,
+          isPlaying: data.is_playing === true,
+          progress: data.progress_ms,
           fetchedAt: Date.now(),
-        }, {
-          headers: { 'Cache-Control': 'public, max-age=10, stale-while-revalidate=30' },
-        });
+        }, { headers: CACHE });
       }
+    } else if (nowPlayingRes.status !== 204) {
+      console.error('Spotify currently-playing:', nowPlayingRes.status, await nowPlayingRes.text().catch(() => ''));
     }
 
     // Not playing — get recently played
@@ -110,12 +121,16 @@ export async function GET() {
           progress: 0,
           duration: item.duration_ms,
           fetchedAt: Date.now(),
-        }, {
-          headers: { 'Cache-Control': 'public, max-age=10, stale-while-revalidate=30' },
-        });
+        }, { headers: CACHE });
       }
+    } else {
+      // 401/403 aquí suele ser el scope user-read-recently-played que falta en el refresh token
+      console.error('Spotify recently-played:', recentRes.status, await recentRes.text().catch(() => ''));
     }
 
+    if (ultima) {
+      return NextResponse.json({ ...ultima, isPlaying: false, progress: 0, fetchedAt: Date.now() }, { headers: CACHE });
+    }
     return NextResponse.json({ isPlaying: false });
   } catch (error) {
     console.error('Spotify API error:', error);

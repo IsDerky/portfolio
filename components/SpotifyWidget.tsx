@@ -17,6 +17,23 @@ interface SpotifyData {
   duration?: number;
 }
 
+// Última canción mostrada: si la API llega sin canción, se enseña esta como «escuchado recientemente»
+const GUARDADA = 'spotify-ultima';
+function leerGuardada(): SpotifyData | null {
+  try {
+    const s = localStorage.getItem(GUARDADA);
+    return s ? (JSON.parse(s) as SpotifyData) : null;
+  } catch {
+    return null;
+  }
+}
+function guardar(d: SpotifyData) {
+  try {
+    const { title, artist, album, albumArt, songUrl } = d;
+    localStorage.setItem(GUARDADA, JSON.stringify({ isPlaying: false, title, artist, album, albumArt, songUrl }));
+  } catch {}
+}
+
 const NUM_BARS = 50;
 const BAR_DURATIONS = Array.from({ length: NUM_BARS }, () => 350 + Math.floor(Math.random() * 150));
 
@@ -71,7 +88,9 @@ export default function SpotifyWidget() {
   const fetchData = useCallback(async () => {
     try {
       const res = await fetch('/api/spotify', { cache: 'no-store' });
-      const json: SpotifyData = await res.json();
+      let json: SpotifyData = await res.json();
+      if (json.title) guardar(json);
+      else json = leerGuardada() ?? json;
 
       if (json.isPlaying && json.progress != null && json.duration != null) {
         songRef.current = {
@@ -89,7 +108,7 @@ export default function SpotifyWidget() {
       setData(json);
     } catch {
       songRef.current = null;
-      setData({ isPlaying: false });
+      setData(leerGuardada() ?? { isPlaying: false });
       setProgressPercent(0);
     } finally {
       setLoading(false);
