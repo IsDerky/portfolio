@@ -73,15 +73,18 @@ function LanguageSwitcher() {
   );
 }
 
+// El icono va por CSS (clase .dark de next-themes): en el servidor no se sabe el tema
+// y elegirlo con `theme` rompía la hidratación en todas las páginas.
 function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   return (
     <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
       className="p-1.5 rounded-full text-fg-muted hover:text-fg-primary transition-colors duration-300"
       aria-label="Toggle theme"
     >
-      {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
+      <Sun size={15} className="hidden dark:block" />
+      <Moon size={15} className="dark:hidden" />
     </button>
   );
 }
