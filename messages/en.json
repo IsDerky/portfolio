@@ -1,0 +1,230 @@
+{
+  "nav": {
+    "home": "Home",
+    "works": "Works",
+    "blog": "Blog",
+    "about": "About"
+  },
+  "about": {
+    "bio": "I'm Alex, from Barcelona, with a degree in Network and Systems Administration. I work as a junior engineer between development and infrastructure, and that's where I want to grow: DevOps, SRE and security. Outside work I run my own server with the same care as a company one: encrypted backups that check themselves, external monitoring, automated deploys with rollback and the whole configuration as code."
+  },
+  "moreInfo": {
+    "bioTitle": "Bio",
+    "iLove": "I",
+    "getInTouch": "Get in Touch",
+    "mailMe": "Mail me",
+    "timeline": [
+      { "year": "2005", "event": "Born in Barcelona, Spain." },
+      { "year": "2019", "event": "Started programming on my own." },
+      { "year": "2021", "event": "Started a vocational degree in Network and Systems Administration (ASIR)." },
+      { "year": "2025", "event": "Started working as a junior engineer and set up my own server." }
+    ],
+    "hobbies": ["Basketball", "Cars", "Cooking", "Coding", "Streaming", "Games", "Series", "Music", "Bikes"]
+  },
+  "worksIntro": {
+    "title": "My Works",
+    "description": "Most of it revolves around my server: how it's configured, secured, monitored and deployed to. The code and documentation of each project are on GitHub."
+  },
+  "aboutMe": {
+    "title": "About Me",
+    "specialization": "Specialization",
+    "specializationValue": "Developer, infrastructure & DevOps",
+    "totalExperience": "Systems Experience",
+    "years": "Years",
+    "coreTechnologies": "Core Technologies",
+    "devStats": "Developer Stats",
+    "linesOfCode": "Lines of Code",
+    "coffeeCups": "Coffee Sips",
+    "featuredProject": "Featured Project"
+  },
+  "footer": {
+    "role": "Junior Engineer · DevOps",
+    "availability": "Open to new opportunities",
+    "rights": "All Rights Reserved.",
+    "location": "Spain, Barcelona"
+  },
+  "gitContributions": {
+    "title": "Contribution Graph",
+    "viewProfile": "View Profile",
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "less": "Less",
+    "more": "More",
+    "contributionsLastYear": "{n} contributions in the last year",
+    "noData": "No contributions data available",
+    "noContributionsOn": "No contributions on",
+    "contribution": "contribution",
+    "contributions": "contributions",
+    "on": "on"
+  },
+  "spotify": {
+    "currentlyListening": "Currently Listening",
+    "currentlyOffline": "Currently Offline",
+    "recentlyListened": "Recently listened",
+    "notPlaying": "Not playing"
+  },
+  "works": {
+    "allProjects": "All Projects",
+    "featuredProjects": "Featured Projects",
+    "noProjectsFound": "No projects found in this category.",
+    "view": "View",
+    "backToWorks": "Back to Works",
+    "visit": "Visit",
+    "source": "Source"
+  },
+  "projects": {
+    "homelab": {
+      "description": "My home server, run like production and managed with Ansible.",
+      "longDescription": "Encrypted backups with monthly restore drills, external monitoring, hardening and self-hosted CI/CD with rollback, all reproducible from Ansible roles.",
+      "details": [
+        {
+          "title": "Configuration as code",
+          "text": "SSH, firewall, fail2ban, backups, alerts, nginx and Cloudflare Tunnel as Ansible roles with secrets in Vault. A second run ends with changed=0."
+        },
+        {
+          "title": "Backups that are tested",
+          "text": "restic to Google Drive, encrypted before leaving the server, and a monthly drill that restores and checks the data on its own."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A Dell OptiPlex running Ubuntu Server 24.04 that I've had since 2025. It hosts my own web app, a Pterodactyl panel with game servers for friends, AdGuard Home, an isolated honeypot and the GitHub Actions runners for my projects. It's a single machine, but I treat it like production: if it goes down, people lose service."
+        },
+        {
+          "heading": "Network and security",
+          "items": [
+            "SSH with keys only and closed to the internet; ufw denying by default and fail2ban with custom filters for the Wings SFTP",
+            "The web app opens no ports: it goes out through Cloudflare Tunnel and only listens on loopback",
+            "Internal services limited to the LAN, with Let's Encrypt certificates issued via DNS-01",
+            "A Discord alert every time someone logs in from anywhere other than my machine"
+          ]
+        },
+        {
+          "heading": "Backups and monitoring",
+          "items": [
+            "restic to Google Drive with systemd timers: system every 6 hours, game servers daily and weekly maintenance",
+            "A restore drill on the first Sunday of every month that checks the restored data is usable",
+            "External watchdog on Cloudflare Workers: if the server or the backups miss a heartbeat, it alerts me"
+          ]
+        },
+        {
+          "heading": "Ansible",
+          "body": "The whole configuration lives in Ansible roles (base, ssh, ufw, fail2ban, backup, alerts, nginx and cloudflared) applied with a single playbook. The roles are public; the inventory and the secrets, encrypted with Ansible Vault, live in a separate private repo. Every change is tried first with --check --diff, and roles that could lock me out validate before applying (sshd -t, nginx -t, fail2ban-client --test). CI runs ansible-lint with the production profile."
+        },
+        {
+          "heading": "Deploys",
+          "body": "Every push to main goes through CI on GitHub and a self-hosted runner deploys versioned releases: database backup, migrations, health check and automatic rollback to the previous version if anything fails."
+        }
+      ]
+    },
+    "cowrie-honeypot": {
+      "description": "SSH and Telnet honeypot in Docker, isolated from my home network.",
+      "longDescription": "Layered isolation (non-root, read-only filesystem, iptables in DOCKER-USER and systemd) and an isolation test that stops the service if it fails.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "Cowrie in Docker, exposed on ports 22 and 23 of my router. It accepts almost any password, records sessions and keeps whatever gets uploaded, but runs nothing. I set it up to see what really happens when you expose SSH to the internet."
+        },
+        {
+          "heading": "Isolation",
+          "items": [
+            "Unprivileged container user, read-only rootfs, cap_drop: ALL and memory, CPU and process limits",
+            "Rules in the DOCKER-USER chain that drop traffic to the LAN and other private networks (ports published by Docker bypass ufw)",
+            "systemd applies the firewall before starting the container: if the rules fail, the honeypot doesn't start",
+            "Logs, sessions and downloads older than 30 days are deleted automatically"
+          ]
+        },
+        {
+          "heading": "Test, don't assume",
+          "body": "The install launches a container on the same network and tries to reach the router, the server and my PC. If it reaches any of them, it stops the honeypot and fails. The same role exists in Ansible, and CI applies it on the GitHub Actions runner against real decoys, first checking that without the firewall they are reachable."
+        },
+        {
+          "heading": "What I've seen",
+          "body": "Thousands of attempts a day from hundreds of IPs, almost always as root with the usual passwords. The attacks that kept me busiest didn't target the honeypot but the Pterodactyl SFTP, and led me to write custom fail2ban filters."
+        }
+      ]
+    },
+    "asistente-ops": {
+      "description": "Discord bot to operate my server from my phone.",
+      "longDescription": "A root collector, an unprivileged bot with read-only tools for an LLM, actions that need confirmation and an external watchdog on Cloudflare Workers defined in Terraform.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "An assistant I can DM to check on the server without opening SSH: backup status, who is attacking, how long until a certificate expires or which game server uses the most RAM."
+        },
+        {
+          "heading": "Privilege separation",
+          "body": "A collector runs as root every 5 minutes and writes the state to a JSON file (SMART, services, backups, certificates, fail2ban, Docker and the journal). The bot, which is what talks to the internet and to the LLM, runs as an unprivileged user and only reads that file. What needs the most permissions is what's least exposed."
+        },
+        {
+          "heading": "Actions with confirmation",
+          "body": "The model can only propose actions, like restarting the app or starting a backup. They run when I press a single-use button that expires after 10 minutes, and polkit limits the bot to two systemd units."
+        },
+        {
+          "heading": "External watchdog",
+          "body": "A Cloudflare Worker with cron and KV receives heartbeats from the server and the backups. If one is late, it alerts me on Discord. It lives outside on purpose, because a server that's down can't report that it's down. Its infrastructure is defined in Terraform."
+        },
+        {
+          "heading": "Only what matters",
+          "body": "At first it alerted on everything and it was noise. Now it only alerts on serious issues; log anomalies are grouped by fingerprint and reported when I ask."
+        }
+      ]
+    },
+    "oficina-pixel": {
+      "description": "Status dashboard for my server as a pixel-art building.",
+      "longDescription": "Every animation is a real event received over SSE: deploys, backups, bans or attacks on the honeypot. LAN only and read-only.",
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A five-floor building where each floor is a part of the server: game servers, backups, fail2ban, the honeypot or the ops bot. It runs on the LAN and is read-only."
+        },
+        {
+          "heading": "No filler",
+          "body": "If a character moves, it's because a real event arrived: the van shows up with a deploy (red if it fails), the cloud truck with a backup, and honeypot attackers walk in with what they actually typed."
+        },
+        {
+          "heading": "How it works",
+          "body": "Custom canvas, no frameworks in the browser. The data comes from the ops bot's local API; nginx exposes it to the LAN only and only allows GET. Since part of what's drawn is written by attackers, everything is inserted as text and a CSP blocks external scripts."
+        }
+      ]
+    },
+    "bodycamrp": {
+      "description": "Browser-based bodycam overlay configurator for FiveM and GTA Roleplay streamers.",
+      "longDescription": "Customize your bodycam overlay with your name, rank, badge number, one of 5 designs, font, logo, and screen position — then launch it directly as an OBS browser source. No installation or account required.",
+      "sections": [
+        {
+          "heading": "Overview",
+          "body": "A free, browser-based body camera overlay tool for FiveM and GTA Roleplay streamers. Customize your overlay and launch it directly as an OBS browser source — no installation, no account, no plugins required."
+        },
+        {
+          "heading": "What You Can Customize",
+          "body": "The configurator lets you personalize every detail of your overlay:",
+          "items": [
+            "Officer data — name, rank, and badge number",
+            "Overlay design — 5 presets: Classic, Minimal, Tactical, Modern, and AXON (replica of the real AXON Body 2)",
+            "Screen position — any corner of the screen",
+            "Scale — 100%, 125%, or 150%",
+            "Logo — none, the built-in AXON logo, or a custom image (e.g. your department's badge)",
+            "Typography — 6 fonts: IBM Plex Mono, Share Tech Mono, Roboto Mono, Orbitron, Rajdhani, and Boxed Round"
+          ]
+        },
+        {
+          "heading": "How It Works",
+          "body": "Configure your overlay, copy the generated URL, and paste it into OBS as a Browser Source. The overlay loads exactly as you set it up every time OBS starts — transparent background, no chroma key needed."
+        },
+        {
+          "heading": "Dashboard",
+          "body": "Sign in with Discord to access a personal dashboard where you can create, save, and share presets. Each overlay gets its own public URL you can distribute to your community."
+        },
+        {
+          "heading": "Custom Department Overlays",
+          "body": "Servers can request a fully custom overlay with their department's identity — colors, logo, and unique style — at no cost."
+        },
+        {
+          "heading": "Tech Stack",
+          "body": "Next.js 16 and React 19 with Prisma and PostgreSQL, Discord login (NextAuth) and logos on Cloudinary. Optimized for 1080p and 1440p streams."
+        }
+      ]
+    }
+  }
+}
