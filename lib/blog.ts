@@ -24,6 +24,7 @@ export const ETIQUETAS = {
   copias: { es: 'Copias', en: 'Backups' },
   hardware: { es: 'Hardware', en: 'Hardware' },
   ia: { es: 'IA', en: 'AI' },
+  rust: { es: 'Rust', en: 'Rust' },
 } as const;
 export type Etiqueta = keyof typeof ETIQUETAS;
 
@@ -71,6 +72,11 @@ export const ENTRADAS: Entrada[] = [
     slug: 'rack-12u', fecha: '2026-11-26', min: 10, tags: ['hardware', 'homelab'],
     es: { titulo: 'Plan de un rack de 12U en casa', entradilla: 'Qué piezas, cuánto cuestan con los precios de 2026 (la RAM y los SSD por las nubes) y por qué cada una.' },
     en: { titulo: 'Planning a 12U rack at home', entradilla: 'Which parts, what they cost at 2026 prices (RAM and SSDs through the roof) and why each one.' },
+  },
+  {
+    slug: 'kyu-terminal', fecha: '2026-12-03', min: 9, tags: ['rust', 'ia'],
+    es: { titulo: 'Kyu: un terminal en Rust con Claude dentro', entradilla: 'Tauri, xterm.js, tres peleas con ConPTY y cómo habla con Claude Code por stream-json. Con los números frente a Windows Terminal.' },
+    en: { titulo: 'Kyu: a Rust terminal with Claude inside', entradilla: 'Tauri, xterm.js, three fights with ConPTY and how it talks to Claude Code over stream-json. With the numbers against Windows Terminal.' },
   },
   {
     slug: 'programar-con-ia', fecha: '2026-12-10', min: 8, tags: ['ia'],

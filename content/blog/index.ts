@@ -8,6 +8,7 @@ import * as copias from './copias-local-nube';
 import * as ram from './ram-defectuosa';
 import * as rack from './rack-12u';
 import * as ia from './programar-con-ia';
+import * as kyu from './kyu-terminal';
 
 // Texto de cada entrada por slug (los datos van en lib/blog.ts)
 export const CONTENIDO: Record<string, { es: Contenido; en: Contenido }> = {
@@ -20,4 +21,5 @@ export const CONTENIDO: Record<string, { es: Contenido; en: Contenido }> = {
   'ram-defectuosa': ram,
   'rack-12u': rack,
   'programar-con-ia': ia,
+  'kyu-terminal': kyu,
 };

@@ -39,7 +39,6 @@
   },
   "footer": {
     "role": "Ingeniero Junior · DevOps",
-    "availability": "Abierto a nuevas oportunidades",
     "rights": "Todos los derechos reservados.",
     "location": "España, Barcelona"
   },
@@ -72,6 +71,52 @@
     "source": "Código"
   },
   "projects": {
+    "kyu-terminal": {
+      "description": "Terminal para Windows y Linux con Claude Code integrado.",
+      "longDescription": "Núcleo en Rust con Tauri 2, interfaz en React y xterm.js. Espacios con paneles divididos, un bloque por orden, autocompletado propio y Claude como una pestaña más, con permisos que enseñan el diff.",
+      "details": [
+        {
+          "title": "Claude dentro, no al lado",
+          "text": "Habla con Claude Code por stream-json: permisos con el diff del cambio, varias conversaciones, reanudar y volver a un mensaje. Con un MCP propio, Claude puede leer los terminales y ejecutar órdenes en uno a la vista, siempre con permiso."
+        },
+        {
+          "title": "Pelearse con ConPTY",
+          "text": "Kyu lleva su propio ConPTY porque el de Windows se come las imágenes sixel, y contesta a la pregunta del cursor antes de que arranque la shell para que no se quede parada al nacer."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Qué es",
+          "body": "Un terminal que uso a diario en Windows y que también corre en Linux. Lo empecé porque pasaba el día entre el terminal y Claude Code en otra ventana, y quería las dos cosas en el mismo sitio, con el terminal sabiendo qué hace Claude y al revés."
+        },
+        {
+          "heading": "Terminal",
+          "items": [
+            "Espacios de trabajo, uno por proyecto, con paneles divididos y pestañas de terminales y archivos que se arrastran de un panel a otro",
+            "Cada orden lleva encima un título con la carpeta, la rama de git y la RAM, y a la derecha el resultado y lo que tardó; funciona con PowerShell y bash",
+            "Autocompletado en gris con el historial de la carpeta, los scripts de package.json, las ramas de git y los archivos",
+            "Ctrl+Clic en una ruta de la salida la abre en el editor de Kyu en esa línea; perfiles SSH sacados de ~/.ssh/config; imágenes sixel"
+          ]
+        },
+        {
+          "heading": "Claude Code",
+          "items": [
+            "Cada conversación es una pestaña al lado de terminales y archivos, arrancada en la carpeta del terminal con el foco",
+            "Permisos con el diff del cambio y planes que se aprueban desde el panel",
+            "Los archivos que cambia Claude se abren con lo cambiado marcado, y se puede deshacer",
+            "Un servidor MCP dentro de Kyu deja que Claude lea los terminales y ejecute órdenes en uno a la vista, siempre con permiso"
+          ]
+        },
+        {
+          "heading": "Git y GitHub",
+          "body": "Con el git y el gh de la máquina, sin guardar tokens: barra con la rama y el CI, pestaña de cambios con commit y push, aviso cuando acaba un run de GitHub Actions y un botón para trabajar en un issue que monta un worktree con su rama y una conversación con el issue escrito."
+        },
+        {
+          "heading": "Publicar",
+          "body": "Una etiqueta vX.Y.Z lanza el workflow de release en Windows y Linux. Lo instalado busca versiones nuevas y se actualiza solo, con paquetes firmados para el actualizador. El CI arranca el binario de Linux bajo xvfb y comprueba que la shell llega a abrirse."
+        }
+      ]
+    },
     "homelab": {
       "description": "Mi servidor casero, tratado como producción y gestionado con Ansible.",
       "longDescription": "Copias cifradas con simulacro de restauración mensual, vigilancia externa, hardening y CI/CD con runners propios y rollback, todo reproducible desde roles de Ansible.",

@@ -20,6 +20,28 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 'kyu-terminal',
+    title: 'Kyu Terminal',
+    description: 'Terminal for Windows and Linux with Claude Code built in.',
+    longDescription: 'Rust core on Tauri 2, React interface and xterm.js. Workspaces with split panes, a block per command, its own autocomplete and Claude as one more tab, with permissions that show the diff.',
+    tags: ['Rust', 'Tauri', 'React', 'xterm.js', 'Claude Code'],
+    category: 'tools',
+    liveUrl: 'https://github.com/IsDerky/kyu-terminal/releases/latest',
+    githubUrl: 'https://github.com/IsDerky/kyu-terminal',
+    year: '2026',
+    featured: true,
+    details: [
+      {
+        title: 'Claude inside, not next to it',
+        text: 'Talks to Claude Code over stream-json: permissions with the diff of the change, several conversations, resume and rewind. Through its own MCP server Claude can read the terminals and run commands in a visible one, always asking first.',
+      },
+      {
+        title: 'Fighting ConPTY',
+        text: 'Kyu ships its own ConPTY because the one in Windows swallows sixel images, and answers the cursor query before the shell starts so it never hangs on launch.',
+      },
+    ],
+  },
+  {
     id: 'homelab',
     title: 'Homelab',
     description: 'My home server, run like production and managed with Ansible.',
