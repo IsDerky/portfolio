@@ -74,7 +74,7 @@ export const ENTRADAS: Entrada[] = [
     en: { titulo: 'Planning a 12U rack at home', entradilla: 'Which parts, what they cost at 2026 prices (RAM and SSDs through the roof) and why each one.' },
   },
   {
-    slug: 'kyu-terminal', fecha: '2026-12-03', min: 9, tags: ['rust', 'ia'],
+    slug: 'kyu-terminal', fecha: '2026-11-25', min: 9, tags: ['rust', 'ia'],
     es: { titulo: 'Kyu: un terminal en Rust con Claude dentro', entradilla: 'Tauri, xterm.js, tres peleas con ConPTY y cómo habla con Claude Code por stream-json. Con los números frente a Windows Terminal.' },
     en: { titulo: 'Kyu: a Rust terminal with Claude inside', entradilla: 'Tauri, xterm.js, three fights with ConPTY and how it talks to Claude Code over stream-json. With the numbers against Windows Terminal.' },
   },
