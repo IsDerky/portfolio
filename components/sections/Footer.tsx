@@ -27,7 +27,6 @@ const Footer = () => {
           </div>
           <div>
             <p className={`${poppins.className} text-sm text-fg-muted font-light`}>{t('location')}</p>
-            <p className={`${poppins.className} text-xs text-fg-subtle font-light mt-1`}>{t('availability')}</p>
           </div>
         </div>
 
@@ -41,7 +40,6 @@ const Footer = () => {
           </div>
           <div className="text-right">
             <p className={`${poppins.className} text-sm text-fg-muted font-light`}>{t('location')}</p>
-            <p className={`${poppins.className} text-xs text-fg-subtle font-light mt-1`}>{t('availability')}</p>
           </div>
         </div>
 

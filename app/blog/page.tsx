@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Rss } from 'lucide-react';
 import { getLocale } from 'next-intl/server';
 import Section from '@/components/layout/Section';
 import Footer from '@/components/sections/Footer';
@@ -40,7 +41,16 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
     <>
       <Section className="py-6 md:py-8">
         <div className="bg-surface-2 rounded-2xl p-6 md:p-16 border border-fg-primary/10">
-          <h1 className={`${poppins.className} text-2xl md:text-3xl lg:text-4xl font-semibold text-fg-primary mb-4 md:mb-6`}>{t.titulo}</h1>
+          <div className="flex items-start justify-between gap-4 mb-4 md:mb-6">
+            <h1 className={`${poppins.className} text-2xl md:text-3xl lg:text-4xl font-semibold text-fg-primary`}>{t.titulo}</h1>
+            <a
+              href={idioma === 'en' ? '/rss.xml?lang=en' : '/rss.xml'}
+              className={`${poppins.className} inline-flex items-center gap-1.5 text-sm px-3 py-1 rounded-full border border-fg-primary/15 text-fg-secondary hover:text-fg-primary hover:border-fg-primary/30 transition-colors`}
+            >
+              <Rss size={14} />
+              RSS
+            </a>
+          </div>
           <p className={`${poppins.className} text-sm md:text-base lg:text-lg text-fg-secondary leading-relaxed font-light md:max-w-3xl`}>{t.intro}</p>
         </div>
       </Section>

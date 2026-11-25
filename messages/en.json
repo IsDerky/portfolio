@@ -39,7 +39,6 @@
   },
   "footer": {
     "role": "Junior Engineer · DevOps",
-    "availability": "Open to new opportunities",
     "rights": "All Rights Reserved.",
     "location": "Spain, Barcelona"
   },
@@ -72,6 +71,52 @@
     "source": "Source"
   },
   "projects": {
+    "kyu-terminal": {
+      "description": "Terminal for Windows and Linux with Claude Code built in.",
+      "longDescription": "Rust core on Tauri 2, React interface and xterm.js. Workspaces with split panes, a block per command, its own autocomplete and Claude as one more tab, with permissions that show the diff.",
+      "details": [
+        {
+          "title": "Claude inside, not next to it",
+          "text": "Talks to Claude Code over stream-json: permissions with the diff of the change, several conversations, resume and rewind. Through its own MCP server Claude can read the terminals and run commands in a visible one, always asking first."
+        },
+        {
+          "title": "Fighting ConPTY",
+          "text": "Kyu ships its own ConPTY because the one in Windows swallows sixel images, and answers the cursor query before the shell starts so it never hangs on launch."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "What it is",
+          "body": "A terminal I use every day on Windows that also runs on Linux. I started it because I spent the day between the terminal and Claude Code in another window, and I wanted both in one place, with the terminal knowing what Claude is doing and the other way round."
+        },
+        {
+          "heading": "Terminal",
+          "items": [
+            "Workspaces, one per project, with split panes and tabs of terminals and files that can be dragged between panes",
+            "Every command gets a header with the folder, git branch and RAM, and on the right the result and how long it took; works with PowerShell and bash",
+            "Grey inline autocomplete from the folder's history, package.json scripts, git branches and files",
+            "Ctrl+Click on a path in the output opens it in Kyu's editor at that line; SSH profiles read from ~/.ssh/config; sixel images"
+          ]
+        },
+        {
+          "heading": "Claude Code",
+          "items": [
+            "Each conversation is a tab next to terminals and files, started in the folder of the focused terminal",
+            "Permissions with the diff of the change, and plans approved from the panel",
+            "Files Claude changes open with the changes highlighted, and can be undone",
+            "An MCP server inside Kyu lets Claude read the terminals and run commands in a visible one, always asking first"
+          ]
+        },
+        {
+          "heading": "Git and GitHub",
+          "body": "Using the machine's own git and gh, no stored tokens: a bar with the branch and CI, a changes tab with commit and push, a notice when a GitHub Actions run finishes, and a button to work on an issue that sets up a worktree with its branch and a conversation with the issue written in."
+        },
+        {
+          "heading": "Releasing",
+          "body": "A vX.Y.Z tag runs the release workflow on Windows and Linux. Installed copies look for new versions and update themselves, with packages signed for the updater. CI starts the Linux binary under xvfb and checks the shell actually opens."
+        }
+      ]
+    },
     "homelab": {
       "description": "My home server, run like production and managed with Ansible.",
       "longDescription": "Encrypted backups with monthly restore drills, external monitoring, hardening and self-hosted CI/CD with rollback, all reproducible from Ansible roles.",

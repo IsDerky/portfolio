@@ -34,7 +34,7 @@ const Aboutme = () => {
   const featuredUrl = featuredProject.liveUrl ?? featuredProject.githubUrl;
 
   const masterTechnologies = [
-    "Linux", "Docker", "Ansible", "Terraform", "Apigee", "Jenkins",
+    "Linux", "Docker", "Ansible", "Terraform", "Rust", "Jenkins",
     "GitLab", "GitHub Actions", "nginx", "Cloudflare", "Bash", "Python",
     "TypeScript", "PostgreSQL", "MariaDB", "SQLite", "Git"
   ];

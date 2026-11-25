@@ -13,6 +13,7 @@ import { getLocale, getMessages } from 'next-intl/server';
 export const metadata: Metadata = {
   title: "Derkyu · Portfolio",
   description: "Junior engineer in Barcelona, working across development, infrastructure and DevOps. Homelab, Ansible, CI/CD and security projects.",
+  alternates: { types: { 'application/rss+xml': [{ url: 'https://derkyu.com/rss.xml', title: 'Blog - Alex (Derkyu)' }] } },
 };
 
 export default async function RootLayout({
