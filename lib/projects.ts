@@ -4,6 +4,10 @@ export interface Project {
   description: string;
   longDescription: string;
   image?: string;
+  /** Versión de `image` con los textos en español (diagramas); sin ella vale `image`. */
+  imageEs?: string;
+  /** La imagen es una captura o un diagrama (no un logo): en su página sale grande, no de icono. */
+  cover?: boolean;
   lightImage?: string;
   darkBackground?: boolean;
   tags: string[];
@@ -24,6 +28,8 @@ export const projects: Project[] = [
     title: 'Kyu Terminal',
     description: 'Terminal for Windows and Linux with Claude Code built in.',
     longDescription: 'Rust core on Tauri 2, React interface and xterm.js. Workspaces with split panes, a block per command, its own autocomplete and Claude as one more tab, with permissions that show the diff.',
+    image: '/projects/kyu.png',
+    cover: true,
     tags: ['Rust', 'Tauri', 'React', 'xterm.js', 'Claude Code'],
     category: 'tools',
     liveUrl: 'https://github.com/IsDerky/kyu-terminal/releases/latest',
@@ -46,6 +52,9 @@ export const projects: Project[] = [
     title: 'Homelab',
     description: 'My home server, run like production and managed with Ansible.',
     longDescription: 'Encrypted backups with monthly restore drills, external monitoring, hardening and self-hosted CI/CD with rollback, all rebuilt from Ansible roles.',
+    image: '/projects/homelab.png',
+    cover: true,
+    imageEs: '/projects/homelab-es.png',
     tags: ['Ansible', 'Linux', 'restic', 'systemd', 'GitHub Actions'],
     category: 'infra',
     githubUrl: 'https://github.com/IsDerky/homelab',
@@ -67,6 +76,9 @@ export const projects: Project[] = [
     title: 'Cowrie Honeypot',
     description: 'SSH and Telnet honeypot in Docker, isolated from the LAN.',
     longDescription: 'Layered isolation (non-root, read-only filesystem, iptables in DOCKER-USER and systemd) and an isolation test that stops the service if it fails.',
+    image: '/projects/cowrie.png',
+    cover: true,
+    imageEs: '/projects/cowrie-es.png',
     tags: ['Docker', 'iptables', 'systemd', 'Bash', 'Ansible'],
     category: 'security',
     githubUrl: 'https://github.com/IsDerky/cowrie-honeypot',
@@ -78,6 +90,9 @@ export const projects: Project[] = [
     title: 'Ops Assistant',
     description: 'Discord bot to operate my server from my phone.',
     longDescription: 'A root collector, an unprivileged bot with read-only LLM tools, actions that need a confirmation click and an external watchdog on Cloudflare Workers defined in Terraform.',
+    image: '/projects/asistente-ops.png',
+    cover: true,
+    imageEs: '/projects/asistente-ops-es.png',
     tags: ['TypeScript', 'Bun', 'Python', 'Terraform', 'Cloudflare Workers'],
     category: 'infra',
     githubUrl: 'https://github.com/IsDerky/asistente-ops',
@@ -90,6 +105,7 @@ export const projects: Project[] = [
     description: 'Status dashboard for my server as a pixel-art building.',
     longDescription: 'Every animation is a real event received over SSE: deploys, backups, bans or attacks on the honeypot. LAN only and read-only.',
     image: '/projects/oficina.png',
+    cover: true,
     tags: ['TypeScript', 'Canvas', 'SSE', 'nginx'],
     category: 'tools',
     githubUrl: 'https://github.com/IsDerky/oficina-pixel',

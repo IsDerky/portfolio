@@ -36,7 +36,8 @@ const ProjectCard = memo(({ project, index, priority }: ProjectCardProps) => {
         <div className="relative h-64 md:h-auto bg-surface-2 flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-t from-surface-2 via-transparent to-transparent opacity-60 z-10"></div>
 
-          {project.image ? (
+          {/* Las capturas y diagramas (cover) van solo en la página del proyecto */}
+          {project.image && !project.cover ? (
             <ProjectImage
               project={project}
               fill

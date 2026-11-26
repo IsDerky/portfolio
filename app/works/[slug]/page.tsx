@@ -54,7 +54,7 @@ export default async function ProjectPage({
 
           {/* Title + meta */}
           <div className="flex items-center gap-4">
-            {project.image && (
+            {project.image && !project.cover && (
               <div className="w-14 h-14 rounded-2xl overflow-hidden bg-[#2c2c2c] flex items-center justify-center shrink-0">
                 <ProjectImage
                   project={project}
@@ -89,6 +89,20 @@ export default async function ProjectPage({
               </span>
             ))}
           </div>
+
+          {/* Captura o diagrama a todo el ancho: de icono no se lee */}
+          {project.image && project.cover && (
+            <div className="rounded-xl overflow-hidden border border-fg-primary/10 bg-[#121212]">
+              <ProjectImage
+                project={project}
+                width={1600}
+                height={1000}
+                className="w-full h-auto"
+                priority
+                disableCircle
+              />
+            </div>
+          )}
 
           <ProjectContent projectId={slug} />
         </div>

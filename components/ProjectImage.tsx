@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
+import { useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
 import type { Project } from '@/lib/projects';
 
@@ -18,10 +19,13 @@ interface ProjectImageProps {
 
 export default function ProjectImage({ project, fill, width, height, className, sizes, priority, disableCircle }: ProjectImageProps) {
   const { theme } = useTheme();
+  const locale = useLocale();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
-  const src = mounted && theme === 'light' && project.lightImage ? project.lightImage : project.image!;
+  // Los diagramas llevan texto: en español, su versión en español.
+  const base = locale === 'es' && project.imageEs ? project.imageEs : project.image!;
+  const src = mounted && theme === 'light' && project.lightImage ? project.lightImage : base;
   const showDarkCircle = !disableCircle && mounted && theme === 'light' && project.darkBackground;
 
   if (fill) {
