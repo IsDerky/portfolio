@@ -75,7 +75,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header image */}
-            {project.image && (
+            {project.image && !project.cover && (
               <div className="relative h-48 md:h-56 bg-surface-2 flex-shrink-0 p-4">
                 <div className="relative w-full h-full">
                   <ProjectImage
@@ -130,6 +130,19 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <p className={`${poppins.className} text-sm md:text-base text-fg-secondary leading-relaxed mb-6 font-light`}>
                 {longDescription}
               </p>
+
+              {/* Captura o diagrama dentro del proyecto, no como portada */}
+              {project.image && project.cover && (
+                <div className="mb-6 rounded-xl overflow-hidden border border-fg-primary/10 bg-[#121212]">
+                  <ProjectImage
+                    project={project}
+                    width={1600}
+                    height={1000}
+                    className="w-full h-auto"
+                    disableCircle
+                  />
+                </div>
+              )}
 
               {/* Details sections */}
               {details && details.length > 0 && (
