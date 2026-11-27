@@ -40,3 +40,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# iconos que genera scripts/generar-iconos.mjs
+/public/icon-192.png
+/public/icon-512.png
+/public/icon-maskable-512.png
+/app/apple-icon.png
+/app/favicon.ico
